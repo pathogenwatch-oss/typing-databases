@@ -93,7 +93,7 @@
           "taxid": 2489010
         }
       ],
-      "url": "https://bigsdb.pasteur.fr/klebsiella/klebsiella.html",
+      "url": "https://bigsdb.pasteur.fr/klebsiella/",
       "type": "cgmlst"
     },
     {
@@ -1394,7 +1394,7 @@
       "name": "Klebsiella pneumoniae",
       "scheme_version": "0",
       "shortname": "kpneumoniae",
-      "url": "http://bigsdb.web.pasteur.fr/klebsiella/",
+      "url": "https://bigsdb.pasteur.fr/klebsiella/",
       "cite": "Diancourt L, Passet V, Verhoef J, Grimont PA, Brisse S. Multilocus Sequence Typing of Klebsiella pneumoniae nosocomial isolates. J Clin Microbiol 2005, 43:4178-82. PMID 16081970",
       "targets": [
         {
