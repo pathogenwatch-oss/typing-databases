@@ -25,15 +25,15 @@ connection.
 ## Quick usage (docker)
 ### Full build
 ```
-%> DOCKER_BUILDKIT=1 docker build --rm -t typing-databases:202208191648 .
+%> docker build --rm -t typing-databases:202208191648 .
 ```
 ### MLST build
 ```
-%> DOCKER_BUILDKIT=1 docker build --rm -t typing-databases:202208191648-mlst --build-arg TYPE=mlst.
+%> docker build --rm -t typing-databases:202208191648-mlst --build-arg TYPE=mlst.
 ```
 ### Scheme build
 ```
-%> DOCKER_BUILDKIT=1 docker build --rm -t typing-databases:202208191648-saureus --build-arg SCHEME=saureus
+%> docker build --rm -t typing-databases:202208191648-saureus --build-arg SCHEME=saureus
 ```
 
 ## Adding a new scheme
