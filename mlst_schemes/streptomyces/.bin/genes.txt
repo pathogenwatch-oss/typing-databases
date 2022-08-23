@@ -1,0 +1,6 @@
+16S
+atpD
+gyrB
+recA
+rpoB
+trpB

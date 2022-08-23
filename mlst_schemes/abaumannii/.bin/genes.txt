@@ -1,0 +1,7 @@
+Oxf_gltA
+Oxf_gyrB
+Oxf_gdhB
+Oxf_recA
+Oxf_cpn60
+Oxf_gpi
+Oxf_rpoD

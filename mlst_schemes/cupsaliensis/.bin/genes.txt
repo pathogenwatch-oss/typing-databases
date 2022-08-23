@@ -1,0 +1,7 @@
+Cup_adk
+Cup_aspA
+Cup_atpA
+Cup_glnA
+Cup_glyA
+Cup_pgi
+Cup_tkt

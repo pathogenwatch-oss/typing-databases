@@ -1,0 +1,10 @@
+glp
+gyrB
+mdh
+metG
+purM
+dtdS
+lysA
+pntA
+pyrC
+tnaA

@@ -1,0 +1,6 @@
+dnaA
+rpoB
+gyrB
+gltX
+adk
+gmk

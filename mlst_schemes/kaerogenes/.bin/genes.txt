@@ -1,0 +1,7 @@
+dnaA
+fusA
+gyrB
+leuS
+pryG
+rplB
+rpoB

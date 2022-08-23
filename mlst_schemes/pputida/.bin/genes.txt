@@ -1,0 +1,8 @@
+argS
+gyrB
+ileS
+nuoC
+ppsA
+recA
+rpoB
+rpoD

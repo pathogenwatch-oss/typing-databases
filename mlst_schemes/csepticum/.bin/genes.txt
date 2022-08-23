@@ -1,0 +1,7 @@
+ddl
+dnaK
+glpK
+groEL
+gyrA
+recA
+tpi

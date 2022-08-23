@@ -1,0 +1,6 @@
+glpF
+gyrB
+metG
+pntA
+pyrC
+toxR

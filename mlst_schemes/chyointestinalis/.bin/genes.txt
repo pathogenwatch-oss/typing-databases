@@ -1,0 +1,7 @@
+Chy_aspA
+Chy_atpA
+Chy_glnA
+Chy_gltA
+Chy_glyA
+Chy_pgm
+Chy_tkt

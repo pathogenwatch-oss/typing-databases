@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+SCHEME="Salmonella.cgMLSTv2"
+
+# From https://stackoverflow.com/a/246128 by Dave Dopson
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+SCHEME_DIR="$( cd $DIR/.. && pwd; )"
+BIN_DIR="$( cd $DIR/../../../bin && pwd; )"
+
+$BIN_DIR/enterobase_cgmlst_download.py $DIR/genes.txt http://enterobase.warwick.ac.uk/schemes/${SCHEME} $SCHEME_DIR

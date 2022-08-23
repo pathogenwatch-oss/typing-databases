@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+
+import datetime
+import json
+import logging
+import os
+from os.path import join, realpath, dirname
+from subprocess import check_call
+
+from check import scheme_ok
+
+if os.environ.get("DEBUG"):
+    DEBUG = True
+else:
+    DEBUG = False
+
+
+def now():
+    return datetime.datetime.utcnow().strftime('%Y%m%d%H%M')
+
+
+def download(scheme):
+    bin_dir = join(scheme, '.bin')
+    with open(join(bin_dir, 'genes.txt'), 'r') as f:
+        lines = (l.strip() for l in f)
+        genes = {l for l in lines if l}
+    update_time = None
+    try:
+        check_call(join(bin_dir, 'download'))
+        update_time = now()
+        with open(join(scheme, f"updated.txt"), 'w') as f:
+            print(update_time, file=f)
+        assert scheme_ok(scheme)
+    except KeyboardInterrupt:
+        raise
+    except:
+        logging.info(f"Problem updating {scheme}")
+        return False
+    else:
+        logging.info(f"Updated {scheme}")
+    return update_time
+
+
+def update(scheme):
+    update_time = download(scheme)
+    if update_time == False:
+        return False, "scheme couldn't be updated"
+    return True, "OK"
+
+
+def make_unique(dirs):
+    """
+    Returns unique directories while maintaining order
+
+    If d is mentioned more than once, it's last position is maintained
+    """
+    unique_dirs = []
+    seen_dirs = set()
+    for s in dirs[::-1]:
+        if realpath(s) in seen_dirs:
+            continue
+        unique_dirs.insert(0, s)
+        seen_dirs.add(realpath(s))
+    return unique_dirs
+
+
+if __name__ == '__main__':
+    if DEBUG:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
+    import argparse
+    import sys
+
+    BIN_DIR = dirname(realpath(__file__))
+    ROOT_DIR = dirname(BIN_DIR)
+    with open(join(ROOT_DIR, 'schemes.json'), 'r') as f:
+        schemes = json.load(f)['schemes']
+
+    type_choices = {s['type'] for s in schemes}
+    type_choices.add('IGNORE')
+
+    parser = argparse.ArgumentParser(description='Update a scheme')
+    parser.add_argument('-s', '--scheme', help='shortname of scheme')
+    parser.add_argument('-t', '--type', help='filter by type of scheme', choices=sorted(type_choices))
+    parser.add_argument('-d', '--directory', help='directory containing the scheme')
+    args = parser.parse_args()
+
+    scheme_type = args.type if args.type != 'IGNORE' else False
+    scheme = args.scheme if args.scheme != 'IGNORE' else False
+    directory = args.directory if args.directory != 'IGNORE' else False
+
+    # print([scheme_type, scheme], file=sys.stderr)
+    if scheme_type:
+        schemes = [s for s in schemes if s['type'] in scheme_type]
+
+    if scheme and directory:
+        scheme_dirs = [join(ROOT_DIR, s['path']) for s in schemes if s['shortname'] == scheme]
+        scheme_dirs += directory
+    elif scheme:
+        scheme_dirs = [join(ROOT_DIR, s['path']) for s in schemes if s['shortname'] == scheme]
+    elif directory:
+        scheme_dirs = [realpath(directory)]
+    else:
+        scheme_dirs = [join(ROOT_DIR, s['path']) for s in schemes]
+
+    scheme_dirs = make_unique(scheme_dirs)
+    # print(scheme_dirs, file=sys.stderr)
+    errors = []
+    n_schemes = len(scheme_dirs)
+    for i, scheme in enumerate(scheme_dirs):
+        update_ok, message = update(scheme)
+        if not update_ok:
+            errors.append((scheme, message))
+        else:
+            print(f"{scheme} is OK ({i + 1}/{n_schemes})")
+
+    if errors:
+        logging.error("There were issues with the following schemes:")
+        for scheme, message in errors:
+            logging.error(f"* {scheme} ({message})")
+        logging.error("Try re-running these schemes with:")
+        logging.error(f"DEBUG=true {sys.argv[0]} -d {' -d '.join(s for s, _ in errors)} [--commit]")
+        sys.exit(1)

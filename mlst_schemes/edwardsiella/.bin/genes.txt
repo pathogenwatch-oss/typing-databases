@@ -1,0 +1,10 @@
+adk
+atpD
+dnaJ
+gapA
+glnA
+hsp60
+phoR
+pyrG
+rpoA
+tuf

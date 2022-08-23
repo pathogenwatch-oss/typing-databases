@@ -1,0 +1,7 @@
+Cfe_aspA
+Cfe_glnA
+Cfe_gltA
+Cfe_glyA
+Cfe_pgm
+Cfe_tkt
+Cfe_uncA

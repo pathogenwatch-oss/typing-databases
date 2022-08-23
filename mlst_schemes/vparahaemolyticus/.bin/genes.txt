@@ -1,0 +1,7 @@
+dnaE
+gyrB
+recA
+dtdS
+pntA
+pyrC
+tnaA

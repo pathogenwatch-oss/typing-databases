@@ -1,0 +1,7 @@
+Che_aspA
+Che_atpA
+Che_glnA
+Che_gltA
+Che_glyA
+Che_pgm
+Che_tkt

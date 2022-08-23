@@ -1,0 +1,6 @@
+gyrB
+groL
+gltA
+metG
+ppsA
+recA

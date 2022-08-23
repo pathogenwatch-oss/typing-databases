@@ -1,0 +1,4 @@
+gyrB
+pyrH
+recA
+atpA

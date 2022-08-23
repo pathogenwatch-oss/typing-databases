@@ -1,0 +1,7 @@
+atpD
+gltB
+gyrB
+recA
+lepA
+phaC
+trpB

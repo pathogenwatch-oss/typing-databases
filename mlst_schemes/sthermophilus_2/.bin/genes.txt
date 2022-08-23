@@ -1,0 +1,10 @@
+carB
+clpX
+dnaA
+murC
+murE
+pepN
+pepX
+pyrG
+recA
+rpoB

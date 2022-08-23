@@ -1,0 +1,7 @@
+23S_rRNA
+ppa
+aspA
+aroE
+atpA
+tkt
+cdtB

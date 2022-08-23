@@ -1,0 +1,2587 @@
+{
+  "schemes": [
+    {
+      "scheme_version": "1",
+      "url": "https://github.com/nickjcroucher/pneumo-cgmlst",
+      "path": "cgmlst_schemes/cogs_spneumoniae",
+      "size": 1447,
+      "name": "Core genome COGs for S. pneumoniae",
+      "shortname": "spneumoniae_1",
+      "cite": [
+        {
+          "text": "Corander et al 2017 Nat. Ecol. Evol. 1:1950-60",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/29038424",
+          "long": "Corander J, Fraser C, Gutmann MU, Arnold B, Hanage WP, Bentley SD, Lipsitch M, and Croucher NJ. Frequency-dependent selection in vaccine-associated pneumococcal population dynamics. Nature ecology & evolution, 2017, 1(12), 1950–1960"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Streptococcus pneumoniae",
+          "taxid": 1313
+        }
+      ],
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/enterobase_Escherichia.cgMLSTv1",
+      "size": 2513,
+      "name": "Escherichia/Shigella cgMLSTv1",
+      "shortname": "ecoli_1",
+      "cite": [
+        {
+          "text": "Alikhan et al. (2018) PLoS Genet 14 (4): e1007261",
+          "url": "https://doi.org/10.1371/journal.pgen.1007261"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Escherichia",
+          "taxid": 561
+        },
+        {
+          "name": "Shigella",
+          "taxid": 620
+        }
+      ],
+      "url": "http://enterobase.warwick.ac.uk/species/index/ecoli",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "2",
+      "path": "cgmlst_schemes/enterobase_Salmonella.cgMLSTv2",
+      "size": 3002,
+      "name": "Salmonella enterica cgMLST V2",
+      "shortname": "senterica_1",
+      "cite": [
+        {
+          "text": "Alikhan et al. (2018) PLoS Genet 14 (4): e1007261",
+          "url": "https://doi.org/10.1371/journal.pgen.1007261"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Salmonella enterica",
+          "taxid": 28901
+        }
+      ],
+      "url": "http://enterobase.warwick.ac.uk/species/index/senterica",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "scgMLST629_S",
+      "path": "cgmlst_schemes/pasteur_klebsiella_18",
+      "size": 629,
+      "name": "Klebsiella pneumoniae/quasipneumoniae/variicola scgMLST639_S",
+      "shortname": "klebsiella_1",
+      "cite": [],
+      "targets": [
+        {
+          "name": "Klebsiella pneumoniae",
+          "taxid": 573
+        },
+        {
+          "name": "Klebsiella quasipneumoniae",
+          "taxid": 1463165
+        },
+        {
+          "name": "Klebsiella variicola",
+          "taxid": 244366
+        },
+        {
+          "name": "Klebsiella africana",
+          "taxid": 2489010
+        }
+      ],
+      "url": "https://bigsdb.pasteur.fr/klebsiella/klebsiella.html",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "cgMLST1748",
+      "path": "cgmlst_schemes/pasteur_listeria_3",
+      "size": 1748,
+      "name": "Listeria cgMLST1748",
+      "shortname": "listeria_1",
+      "cite": [],
+      "targets": [
+        {
+          "name": "Listeria",
+          "taxid": 1637
+        }
+      ],
+      "url": "https://bigsdb.pasteur.fr/listeria/listeria.html",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "path": "cgmlst_schemes/pubmlst_abaumannii_3",
+      "size": 2133,
+      "name": "Acinetobacter baumannii cgMLST v1.0",
+      "shortname": "abaumannii_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the A. baumannii Multi Locus Sequence Typing website (https://pubmlst.org/abaumannii/) sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Acinetobacter baumannii",
+          "taxid": 470
+        }
+      ],
+      "url": "https://pubmlst.org/abaumannii/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "path": "cgmlst_schemes/pubmlst_bpseudomallei_2",
+      "size": 4090,
+      "name": "Burkholderia pseudomallei cgMLST v1.0",
+      "shortname": "burkholderia_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the B. pseudomallei Multi Locus Sequence Typing website (https://pubmlst.org/bpseudomallei/) sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Burkholderia pseudomallei",
+          "taxid": 28450
+        }
+      ],
+      "url": "https://pubmlst.org/bpseudomallei/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "path": "cgmlst_schemes/pubmlst_campylobacter_4",
+      "size": 1343,
+      "name": "C. jejuni / C. coli cgMLST v1.0",
+      "shortname": "campylobacter_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Campylobacter jejuni",
+          "taxid": 197
+        },
+        {
+          "name": "Campylobacter coli",
+          "taxid": 195
+        }
+      ],
+      "url": "https://pubmlst.org/campylobacter/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "path": "cgmlst_schemes/pubmlst_neisseria_47",
+      "size": 1605,
+      "name": "N. meningitidis cgMLST v1.0",
+      "shortname": "nmeningitidis_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the Neisseria Multi Locus Sequence Typing website (https://pubmlst.org/neisseria/) developed by Keith Jolley and sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Neisseria meningitidis",
+          "taxid": 487
+        }
+      ],
+      "url": "https://pubmlst.org/neisseria/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "path": "cgmlst_schemes/pubmlst_neisseria_62",
+      "size": 1649,
+      "name": "N. gonorrhoeae cgMLST v1.0",
+      "shortname": "ngonorrhoeae_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the Neisseria Multi Locus Sequence Typing website (https://pubmlst.org/neisseria/) developed by Keith Jolley and sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Neisseria gonorrhoeae",
+          "taxid": 485
+        }
+      ],
+      "url": "https://pubmlst.org/neisseria/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "Core 2208",
+      "path": "cgmlst_schemes/pubmlst_saureus_2",
+      "size": 2208,
+      "name": "S. aureus Core 2208",
+      "shortname": "saureus_1",
+      "cite": [
+        {
+          "text": "Jolley & Maiden 2010, BMC Bioinformatics, 11:595",
+          "url": "http://www.biomedcentral.com/1471-2105/11/595/abstract",
+          "long": "This tool made use of the Staphylococcus aureus MLST website (https://pubmlst.org/saureus/) sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Staphylococcus aureus",
+          "taxid": 1280
+        }
+      ],
+      "url": "https://pubmlst.org/saureus/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "v1.0",
+      "url": "https://pubmlst.org/vcholerae/",
+      "path": "cgmlst_schemes/pubmlst_vcholerae_3",
+      "size": 2443,
+      "name": "V. Cholerae cgmlst",
+      "shortname": "vcholerae_1",
+      "cite": [
+        {
+          "text": "Jolley et al. Wellcome Open Res 2018, 3:124",
+          "url": "https://wellcomeopenresearch.org/articles/3-124",
+          "long": "This tool made use of the Vibrio cholerae MLST website (https://pubmlst.org/vcholerae/) sited at the University of Oxford"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Vibrio cholerae",
+          "taxid": 666
+        }
+      ],
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/ridom_paeruginosa_16115339",
+      "size": 3867,
+      "name": "Pseudamonas aeruginosa",
+      "shortname": "p_aeruginosa_1",
+      "cite": [
+        {
+          "text": "Tönnies H et al. (2020) J. Clin. Microbiol.",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/33328175",
+          "long": "Tönnies H, Prior K, Harmsen D, and Mellmann A. Establishment and evaluation of a core genome multilocus sequence typing scheme for whole-genome sequence-based typing of Pseudomonas aeruginosa. J Clin Microbiol. 2020"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Pseudomonas aeruginosa",
+          "taxid": 287
+        }
+      ],
+      "url": "https://www.cgmlst.org/ncs/schema/16115339/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/ridom_efaecium_991893",
+      "size": 1423,
+      "name": "Enterococcus faecium",
+      "shortname": "efaecium_1",
+      "cite": [
+        {
+          "text": "de Been M et al. (2015) J. Clin. Microbiol. 53",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/26400782",
+          "long": "de Been M, Pinholt M, Top J, Bletz S, Mellmann A, van Schaik W, Brouwer E, Rogers M, Kraat Y, Bonten M, Corander J, Westh H, Harmsen D, and Willems RJ. Core Genome Multilocus Sequence Typing Scheme for High- Resolution Typing of Enterococcus faecium. J. Clin. Microbiol. 2015, 53: 3788-97: 3788-97"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Enterococcus faecium",
+          "taxid": 1352
+        }
+      ],
+      "url": "https://www.cgmlst.org/ncs/schema/991893/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/ridom_mycobacterium_741110",
+      "size": 2891,
+      "name": "Mycobacterium tuberculosis/bovis/africanum/canettii",
+      "shortname": "mycobacterium_1",
+      "cite": [
+        {
+          "text": "Kohl TA et al. (2014) J. Clin. Microbiol. 52",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/24789177",
+          "long": "Kohl TA, Diel R, Harmsen D, Rothgänger J, Walter KM, Merker M, Weniger T, and Niemann S. Whole-genome-based Mycobacterium tuberculosis surveillance: a standardized, portable, and expandable approach. J. Clin. Microbiol. 2014, 52: 2479-86: 2479-86"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Mycobacterium tuberculosis",
+          "taxid": 1773
+        },
+        {
+          "name": "Mycobacterium bovis",
+          "taxid": 1765
+        },
+        {
+          "name": "Mycobacterium africanum",
+          "taxid": 33894
+        },
+        {
+          "name": "Mycobacterium canettii",
+          "taxid": 78331
+        }
+      ],
+      "url": "https://www.cgmlst.org/ncs/schema/741110/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/ridom_cdifficile_3560802",
+      "size": 2270,
+      "name": "Clostridioides difficile",
+      "shortname": "cdifficile_1",
+      "cite": [
+        {
+          "text": "Bletz S et al. (2018) J. Clin. Microbiol.",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/29618503",
+          "long": "Bletz S, Janezic S, Harmsen D, Rupnik M, and Mellmann A. Defining and Evaluating a Core Genome Multilocus Sequence Typing Scheme for Genome-Wide Typing of Clostridium difficile. J. Clin. Microbiol. 2018"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Clostridioides difficile",
+          "taxid": 1496
+        }
+      ],
+      "url": "https://www.cgmlst.org/ncs/schema/3560802/",
+      "type": "cgmlst"
+    },
+    {
+      "scheme_version": "1",
+      "path": "cgmlst_schemes/ridom_efaecalis_3887469",
+      "size": 1972,
+      "name": "Enterococcus faecalis",
+      "shortname": "efaecalis_1",
+      "cite": [
+        {
+          "text": "Neumann B et al. (2019) J. Clin. Microbiol.",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/30651394",
+          "long": "Neumann B, Prior K, Bender JK, Harmsen D, Klare I, Fuchs S, Bethe A, Zühlke D, Göhler A, Schwarz S, Schaffer K, Riedel K, Wieler LH, and Werner G. A core genome multilocus sequence typing (cgMLST) scheme for Enterococcus faecalis. J. Clin. Microbiol. 2019"
+        }
+      ],
+      "targets": [
+        {
+          "name": "Enterococcus faecalis",
+          "taxid": 1351
+        }
+      ],
+      "url": "https://www.cgmlst.org/ncs/schema/3887469/",
+      "type": "cgmlst"
+    },
+    {
+      "name": "Acinetobacter baumannii#1",
+      "scheme_version": "1",
+      "shortname": "abaumannii",
+      "url": "https://pubmlst.org/abaumannii/",
+      "cite": "This tool made use of the Acinetobacter baumannii MLST website (https://pubmlst.org/abaumannii/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Acinetobacter baumannii",
+          "taxid": 470
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/abaumannii"
+    },
+    {
+      "name": "Acinetobacter baumannii#2",
+      "scheme_version": "2",
+      "shortname": "abaumannii_2",
+      "url": "https://pubmlst.org/abaumannii/",
+      "cite": "This tool made use of the Acinetobacter baumannii MLST website (https://pubmlst.org/abaumannii/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Acinetobacter baumannii",
+          "taxid": 470
+        }
+      ],
+      "type": "alternative_mlst",
+      "path": "mlst_schemes/abaumannii_2"
+    },
+    {
+      "name": "Achromobacter spp.",
+      "scheme_version": "0",
+      "shortname": "achromobacter",
+      "url": "https://pubmlst.org/achromobacter",
+      "cite": "This tool made use of the Achromobacter MLST website (https://pubmlst.org/achromobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Achromobacter",
+          "taxid": 222
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/achromobacter"
+    },
+    {
+      "name": "Aeromonas spp.",
+      "scheme_version": "0",
+      "shortname": "aeromonas",
+      "url": "https://pubmlst.org/aeromonas/",
+      "cite": "This tool made use of the Aeromonas MLST website (https://pubmlst.org/aeromonas/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Aeromonas",
+          "taxid": 642
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/aeromonas"
+    },
+    {
+      "name": "Aspergillus fumigatus",
+      "scheme_version": "0",
+      "shortname": "afumigatus",
+      "url": "https://pubmlst.org/afumigatus/",
+      "cite": "This tool made use of the Aspergillus fumigatus Multi Locus Sequence Typing website (https://pubmlst.org/afumigatus/) sited at the University of Oxford (Jolley et al. 2004, BMC Bioinformatics, 5:86). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Aspergillus fumigatus",
+          "taxid": 746128
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/afumigatus"
+    },
+    {
+      "name": "Anaplasma phagocytophilum",
+      "scheme_version": "0",
+      "shortname": "aphagocytophilum",
+      "url": "https://pubmlst.org/aphagocytophilum/",
+      "cite": "This tool made use of the Anaplasma phagocytophilum Multi Locus Sequence Typing website (https://pubmlst.org/aphagocytophilum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Anaplasma phagocytophilum",
+          "taxid": 948
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/aphagocytophilum"
+    },
+    {
+      "name": "Arcobacter spp.",
+      "scheme_version": "0",
+      "shortname": "arcobacter",
+      "url": "https://pubmlst.org/arcobacter/",
+      "cite": "This tool made use of the Arcobacter MLST website (https://pubmlst.org/arcobacter/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Arcobacter",
+          "taxid": 28196
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/arcobacter"
+    },
+    {
+      "name": "Bartonella bacilliformis",
+      "scheme_version": "0",
+      "shortname": "bbacilliformis",
+      "url": "https://pubmlst.org/bbacilliformis/",
+      "cite": "This tool made use of the Bartonella bacilliformis MLST website (https://pubmlst.org/bbacilliformis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Bartonella bacilliformis",
+          "taxid": 774
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bbacilliformis"
+    },
+    {
+      "name": "Burkholderia cepacia complex",
+      "scheme_version": "0",
+      "shortname": "bcc",
+      "url": "https://pubmlst.org/bcc/",
+      "cite": "This tool made use of the Burkholderia cepacia complex Multi Locus Sequence Typing website (https://pubmlst.org/bcc/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Burkholderia cepacia complex",
+          "taxid": 87882
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bcc"
+    },
+    {
+      "name": "Bacillus cereus",
+      "scheme_version": "0",
+      "shortname": "bcereus",
+      "url": "https://pubmlst.org/bcereus/",
+      "cite": "This tool made use of the Bacillus cereus Multi Locus Sequence Typing website (https://pubmlst.org/bcereus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Bacillus cereus",
+          "taxid": 1396
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bcereus"
+    },
+    {
+      "name": "Brachyspira hampsonii",
+      "scheme_version": "0",
+      "shortname": "bhampsonii",
+      "url": "https://pubmlst.org/brachyspira/",
+      "cite": "This tool made use of the Brachyspira MLST website (https://pubmlst.org/brachyspira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brachyspira hampsonii",
+          "taxid": 1287055
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bhampsonii"
+    },
+    {
+      "name": "Bartonella henselae",
+      "scheme_version": "0",
+      "shortname": "bhenselae",
+      "url": "https://pubmlst.org/bhenselae",
+      "cite": "This tool made use of the Bartonella henselae MLST website (https://pubmlst.org/bhenselae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Bartonella henselae",
+          "taxid": 38323
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bhenselae"
+    },
+    {
+      "name": "Brachyspira hyodysenteriae",
+      "scheme_version": "0",
+      "shortname": "bhyodysenteriae",
+      "url": "https://pubmlst.org/brachyspira/",
+      "cite": "This tool made use of the Brachyspira MLST website (https://pubmlst.org/brachyspira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brachyspira hyodysenteriae",
+          "taxid": 159
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bhyodysenteriae"
+    },
+    {
+      "name": "Brachyspira intermedia",
+      "scheme_version": "0",
+      "shortname": "bintermedia",
+      "url": "https://pubmlst.org/brachyspira/",
+      "cite": "This tool made use of the Brachyspira MLST website (https://pubmlst.org/brachyspira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brachyspira intermedia",
+          "taxid": 84377
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bintermedia"
+    },
+    {
+      "name": "Bacillus licheniformis",
+      "scheme_version": "0",
+      "shortname": "blicheniformis",
+      "url": "https://pubmlst.org/blicheniformis/",
+      "cite": "This tool made use of the Bacillus licheniformis MLST website (https://pubmlst.org/blicheniformis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Bacillus licheniformis",
+          "taxid": 1402
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/blicheniformis"
+    },
+    {
+      "name": "Bordetella spp.",
+      "scheme_version": "0",
+      "shortname": "bordetella",
+      "url": "https://bigsdb.pasteur.fr/bordetella/",
+      "cite": "This tool made use of the Bordetella Multi Locus Sequence Typing website (https://bigsdb.pasteur.fr/bordetella/) sited at the Pasteur Institute.",
+      "targets": [
+        {
+          "name": "Bordetella",
+          "taxid": 517
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bordetella"
+    },
+    {
+      "name": "Borrelia spp.",
+      "scheme_version": "0",
+      "shortname": "borrelia",
+      "url": "https://pubmlst.org/borrelia/",
+      "cite": "This tool made use of the Borrelia MLST website (https://pubmlst.org/borrelia/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Borrelia",
+          "taxid": 138
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/borrelia"
+    },
+    {
+      "name": "Brachyspira pilosicoli",
+      "scheme_version": "0",
+      "shortname": "bpilosicoli",
+      "url": "https://pubmlst.org/brachyspira/",
+      "cite": "This tool made use of the Brachyspira MLST website (https://pubmlst.org/brachyspira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brachyspira pilosicoli",
+          "taxid": 52584
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bpilosicoli"
+    },
+    {
+      "name": "Burkholderia pseudomallei",
+      "scheme_version": "0",
+      "shortname": "bpseudomallei",
+      "url": "https://pubmlst.org/bpseudomallei",
+      "cite": "This tool made use of the Burkholderia pseudomallei MLST website (https://pubmlst.org/bpseudomallei/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Burkholderia pseudomallei",
+          "taxid": 28450
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bpseudomallei"
+    },
+    {
+      "name": "Brachyspira spp.",
+      "scheme_version": "0",
+      "shortname": "brachyspira",
+      "url": "https://pubmlst.org/brachyspira/",
+      "cite": "This tool made use of the Brachyspira MLST website (https://pubmlst.org/brachyspira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brachyspira",
+          "taxid": 29521
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/brachyspira"
+    },
+    {
+      "name": "Brucella spp.",
+      "scheme_version": "0",
+      "shortname": "brucella",
+      "url": "https://pubmlst.org/brucella",
+      "cite": "This tool made use of the Brucella MLST website (https://pubmlst.org/brucella/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Brucella",
+          "taxid": 234
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/brucella"
+    },
+    {
+      "name": "Bacillus subtilis",
+      "scheme_version": "0",
+      "shortname": "bsubtilis",
+      "url": "https://pubmlst.org/bsubtilis/",
+      "cite": "This tool made use of the Bacillus subtilis Multi Locus Sequence Typing website (https://pubmlst.org/bsubtilis/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Bacillus subtilis",
+          "taxid": 1423
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/bsubtilis"
+    },
+    {
+      "name": "Candida albicans",
+      "scheme_version": "0",
+      "shortname": "calbicans",
+      "url": "https://pubmlst.org/calbicans",
+      "cite": "This tool made use of the Candida albicans MLST website (https://pubmlst.org/calbicans/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Candida albicans",
+          "taxid": 5476
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/calbicans"
+    },
+    {
+      "name": "Campylobacter jejuni",
+      "scheme_version": "0",
+      "shortname": "campylobacter",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter jejuni",
+          "taxid": 197
+        },
+        {
+          "name": "Campylobacter coli",
+          "taxid": 195
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/campylobacter"
+    },
+    {
+      "name": "Clostridium botulinum",
+      "scheme_version": "0",
+      "shortname": "cbotulinum",
+      "url": "https://pubmlst.org/cbotulinum/",
+      "cite": "This tool made use of the Clostridium botulinum MLST website (https://pubmlst.org/cbotulinum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Clostridium botulinum",
+          "taxid": 1491
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cbotulinum"
+    },
+    {
+      "name": "Campylobacter concisus/curvus",
+      "scheme_version": "0",
+      "shortname": "cconcisus",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter curvus",
+          "taxid": 200
+        },
+        {
+          "name": "Campylobacter concisus",
+          "taxid": 199
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cconcisus"
+    },
+    {
+      "name": "Clostridioides difficile",
+      "scheme_version": "0",
+      "shortname": "cdifficile",
+      "url": "https://pubmlst.org/cdifficile",
+      "cite": "This tool made use of the Clostridium difficile Multi Locus Sequence Typing website (https://pubmlst.org/cdifficile/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Clostridioides difficile",
+          "taxid": 1496
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cdifficile"
+    },
+    {
+      "name": "Corynebacterium diphtheriae",
+      "scheme_version": "0",
+      "shortname": "cdiphtheriae",
+      "url": "https://bigsdb.pasteur.fr/diphtheria/",
+      "cite": "This tool made use of the Corynebacterium diphtheriae MLST website (https://bigsdb.pasteur.fr/cdiphtheriae/) sited at the Pasteur Institute.",
+      "targets": [
+        {
+          "name": "Corynebacterium diphtheriae",
+          "taxid": 1717
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cdiphtheriae"
+    },
+    {
+      "name": "Campylobacter fetus",
+      "scheme_version": "0",
+      "shortname": "cfetus",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter fetus",
+          "taxid": 196
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cfetus"
+    },
+    {
+      "name": "Citrobacter freundii",
+      "scheme_version": "0",
+      "shortname": "cfreundii",
+      "url": "https://pubmlst.org/cfreundii",
+      "cite": "This tool made use of the Citrobacter freundii MLST website (https://pubmlst.org/cfreundii/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Citrobacter freundii",
+          "taxid": 546
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cfreundii"
+    },
+    {
+      "name": "Candida glabrata",
+      "scheme_version": "0",
+      "shortname": "cglabrata",
+      "url": "https://pubmlst.org/cglabrata/",
+      "cite": "This tool made use of the Candida glabrata MLST website (https://pubmlst.org/cglabrata/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Candida glabrata",
+          "taxid": 5478
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cglabrata"
+    },
+    {
+      "name": "Campylobacter helveticus",
+      "scheme_version": "0",
+      "shortname": "chelveticus",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter helveticus",
+          "taxid": 28898
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/chelveticus"
+    },
+    {
+      "name": "Chlamydiales spp.",
+      "scheme_version": "0",
+      "shortname": "chlamydiales",
+      "url": "https://pubmlst.org/chlamydiales/",
+      "cite": "This tool made use of the Chlamydiales MLST website (https://pubmlst.org/chlamydiales/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Chlamydiales",
+          "taxid": 51291
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/chlamydiales"
+    },
+    {
+      "name": "Campylobacter hyointestinalis",
+      "scheme_version": "0",
+      "shortname": "chyointestinalis",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter hyointestinalis",
+          "taxid": 198
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/chyointestinalis"
+    },
+    {
+      "name": "Campylobacter insulaenigrae",
+      "scheme_version": "0",
+      "shortname": "cinsulaenigrae",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter insulaenigrae",
+          "taxid": 260714
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cinsulaenigrae"
+    },
+    {
+      "name": "Candida krusei",
+      "scheme_version": "0",
+      "shortname": "ckrusei",
+      "url": "https://pubmlst.org/ckrusei/",
+      "cite": "This tool made use of the Candida krusei Multi Locus Sequence Typing website (https://pubmlst.org/ckrusei/) sited at the University of Oxford (Jolley et al. 2004, BMC Bioinformatics, 5:86). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Candida krusei",
+          "taxid": 4909
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ckrusei"
+    },
+    {
+      "name": "Campylobacter lanienae",
+      "scheme_version": "0",
+      "shortname": "clanienae",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter lanienae",
+          "taxid": 75658
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/clanienae"
+    },
+    {
+      "name": "Campylobacter lari",
+      "scheme_version": "0",
+      "shortname": "clari",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter lari",
+          "taxid": 201
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/clari"
+    },
+    {
+      "name": "Carnobacterium maltaromaticum",
+      "scheme_version": "0",
+      "shortname": "cmaltaromaticum",
+      "url": "https://pubmlst.org/cmaltaromaticum",
+      "cite": "This tool made use of the Carnobacterium maltaromaticum MLST website (https://pubmlst.org/cmaltaromaticum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Carnobacterium maltaromaticum",
+          "taxid": 2751
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cmaltaromaticum"
+    },
+    {
+      "name": "Cronobacter spp.",
+      "scheme_version": "0",
+      "shortname": "cronobacter",
+      "url": "https://pubmlst.org/cronobacter/",
+      "cite": "This tool made use of the Cronobacter Multi Locus Sequence Typing website (https://pubmlst.org/cronobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Cronobacter",
+          "taxid": 413496
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cronobacter"
+    },
+    {
+      "name": "Clostridium septicum",
+      "scheme_version": "0",
+      "shortname": "csepticum",
+      "url": "https://pubmlst.org/csepticum/",
+      "cite": "This tool made use of the Clostridium septicum MLST website (https://pubmlst.org/csepticum/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Clostridium septicum",
+          "taxid": 1504
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/csepticum"
+    },
+    {
+      "name": "Clonorchis sinensis",
+      "scheme_version": "0",
+      "shortname": "csinensis",
+      "url": "https://pubmlst.org/csinensis/",
+      "cite": "This tool made use of the Clonorchis sinensis MLST website (https://pubmlst.org/csinensis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Clonorchis sinensis",
+          "taxid": 79923
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/csinensis"
+    },
+    {
+      "name": "Campylobacter sputorum",
+      "scheme_version": "0",
+      "shortname": "csputorum",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter sputorum",
+          "taxid": 206
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/csputorum"
+    },
+    {
+      "name": "Candida tropicalis",
+      "scheme_version": "0",
+      "shortname": "ctropicalis",
+      "url": "https://pubmlst.org/ctropicalis/",
+      "cite": "This tool made use of the Candida tropicalis Multi Locus Sequence Typing website (https://pubmlst.org/ctropicalis/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Candida tropicalis",
+          "taxid": 5482
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ctropicalis"
+    },
+    {
+      "name": "Campylobacter upsaliensis",
+      "scheme_version": "0",
+      "shortname": "cupsaliensis",
+      "url": "https://pubmlst.org/campylobacter/",
+      "cite": "This tool made use of the Campylobacter Multi Locus Sequence Typing website (https://pubmlst.org/campylobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Campylobacter upsaliensis",
+          "taxid": 28080
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/cupsaliensis"
+    },
+    {
+      "name": "Dichelobacter nodosus",
+      "scheme_version": "0",
+      "shortname": "dnodosus",
+      "url": "http://pubmlst.org/dnodosus",
+      "cite": "This tool made use of the Dichelobacter nodosus MLST website (https://pubmlst.org/dnodosus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Dichelobacter nodosus",
+          "taxid": 870
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/dnodosus"
+    },
+    {
+      "name": "Enterobacter cloacae",
+      "scheme_version": "0",
+      "shortname": "ecloacae",
+      "url": "https://pubmlst.org/ecloacae/",
+      "cite": "This tool made use of the Enterobacter cloacae MLST website (https://pubmlst.org/ecloacae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Enterobacter cloacae",
+          "taxid": 550
+        },
+        {
+          "name": "Enterobacter asburiae",
+          "taxid": 61645
+        },
+        {
+          "name": "Enterobacter hormaechei",
+          "taxid": 158836
+        },
+        {
+          "name": "Enterobacter kobei",
+          "taxid": 208224
+        },
+        {
+          "name": "Enterobacter ludwigii",
+          "taxid": 299767
+        },
+        {
+          "name": "Enterobacter nimipressuralis",
+          "taxid": 69220
+        },
+        {
+          "name": "Enterobacter cancerogenus",
+          "taxid": 69218
+        },
+        {
+          "name": "Enterobacter roggenkampii",
+          "taxid": 1812935
+        },
+        {
+          "name": "Enterobacter sichuanensis",
+          "taxid": 2071710
+        },
+        {
+          "name": "Enterobacter genomosp. O",
+          "taxid": 2364150
+        },
+        {
+          "name": "Enterobacter genomosp. S",
+          "taxid": 2364151
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ecloacae"
+    },
+    {
+      "name": "Escherichia coli#1",
+      "scheme_version": "1",
+      "shortname": "ecoli",
+      "url": "http://mlst.warwick.ac.uk/mlst/dbs/Ecoli",
+      "cite": "Alikhan NF, Zhou Z,Sergeant MJ, Achtman M (2018) A genomic overview of the population structure of Salmonella. PLoS Genet 14 (4): e1007261. https://doi.org/10.1371/journal.pgen.1007261",
+      "targets": [
+        {
+          "name": "Escherichia coli",
+          "taxid": 562
+        },
+        {
+          "name": "Shigella",
+          "taxid": 620
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ecoli"
+    },
+    {
+      "name": "Escherichia coli#2",
+      "scheme_version": "2",
+      "shortname": "ecoli_2",
+      "url": "http://bigsdb.web.pasteur.fr/ecoli/",
+      "cite": "Jaureguy F, Landraud L, Passet V, Diancourt L, Frapy E, Guigon G, Carbonnelle E, Lortholary O, Clermont O, Denamur E, Picard B, Nassif X, Brisse S. 2008. Phylogenetic and genomic diversity of human bacteremic Escherichia coli strains. BMC Genomics 9:560 PMID 19036134",
+      "targets": [
+        {
+          "name": "Escherichia coli",
+          "taxid": 562
+        },
+        {
+          "name": "Shigella",
+          "taxid": 620
+        }
+      ],
+      "type": "alternative_mlst",
+      "path": "mlst_schemes/ecoli_2"
+    },
+    {
+      "name": "Edwardsiella spp.",
+      "scheme_version": "0",
+      "shortname": "edwardsiella",
+      "url": "http://pubmlst.org/edwardsiella/",
+      "cite": "This tool made use of the Edwardsiella tarda MLST website (https://pubmlst.org/etarda/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Edwardsiella",
+          "taxid": 635
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/edwardsiella"
+    },
+    {
+      "name": "Enterococcus faecalis",
+      "scheme_version": "0",
+      "shortname": "efaecalis",
+      "url": "https://pubmlst.org/efaecalis/",
+      "cite": "This tool made use of the Enterococcus faecalis MLST website (https://pubmlst.org/efaecalis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Enterococcus faecalis",
+          "taxid": 1351
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/efaecalis"
+    },
+    {
+      "name": "Enterococcus faecium",
+      "scheme_version": "0",
+      "shortname": "efaecium",
+      "url": "https://pubmlst.org/efaecium/",
+      "cite": "This tool made use of the Enterococcus faecium MLST website (https://pubmlst.org/efaecium/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Enterococcus faecium",
+          "taxid": 1352
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/efaecium"
+    },
+    {
+      "name": "Flavobacterium psychrophilum",
+      "scheme_version": "0",
+      "shortname": "fpsychrophilum",
+      "url": "https://pubmlst.org/fpsychrophilum/",
+      "cite": "This tool made use of the Flavobacterium psychrophilum MLST website (https://pubmlst.org/fpsychrophilum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Flavobacterium psychrophilum",
+          "taxid": 96345
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/fpsychrophilum"
+    },
+    {
+      "name": "Gallibacterium anatis",
+      "scheme_version": "0",
+      "shortname": "ganatis",
+      "url": "http://pubmlst.org/gallibacterium",
+      "cite": "This tool made use of the Gallibacterium MLST website (https://pubmlst.org/gallibacterium/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Gallibacterium anatis",
+          "taxid": 750
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ganatis"
+    },
+    {
+      "name": "Helicobacter cinaedi",
+      "scheme_version": "0",
+      "shortname": "hcinaedi",
+      "url": "https://pubmlst.org/hcinaedi",
+      "cite": "This tool made use of the Helicobacter cinaedi Multi Locus Sequence Typing website (https://pubmlst.org/hcinaedi/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Helicobacter cinaedi",
+          "taxid": 213
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/hcinaedi"
+    },
+    {
+      "name": "Haemophilus influenzae",
+      "scheme_version": "0",
+      "shortname": "hinfluenzae",
+      "url": "https://pubmlst.org/hinfluenzae/",
+      "cite": "This tool made use of the Haemophilus influenzae MLST website (https://pubmlst.org/hinfluenzae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Haemophilus influenzae",
+          "taxid": 727
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/hinfluenzae"
+    },
+    {
+      "name": "Haemophilus parasuis",
+      "scheme_version": "0",
+      "shortname": "hparasuis",
+      "url": "https://pubmlst.org/hparasuis/",
+      "cite": "This tool made use of the Haemophilus parasuis MLST website (https://pubmlst.org/hparasuis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Haemophilus parasuis",
+          "taxid": 738
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/hparasuis"
+    },
+    {
+      "name": "Helicobacter pylori",
+      "scheme_version": "0",
+      "shortname": "hpylori",
+      "url": "https://pubmlst.org/helicobacter/",
+      "cite": "This tool made use of the Helicobacter pylori Multi Locus Sequence Typing website (https://pubmlst.org/helicobacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust and European Union.",
+      "targets": [
+        {
+          "name": "Helicobacter pylori",
+          "taxid": 210
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/hpylori"
+    },
+    {
+      "name": "Helicobacter suis",
+      "scheme_version": "0",
+      "shortname": "hsuis",
+      "url": "https://pubmlst.org/hsuis/",
+      "cite": "This tool made use of the Helicobacter suis Multi Locus Sequence Typing website (https://pubmlst.org/hsuis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Helicobacter suis",
+          "taxid": 104628
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/hsuis"
+    },
+    {
+      "name": "Klebsiella aerogenes",
+      "scheme_version": "0",
+      "shortname": "kaerogenes",
+      "url": "http://pubmlst.org/kaerogenes/",
+      "cite": "This tool made use of the Klebsiella aerogenes MLST website (https://pubmlst.org/kaerogenes/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Klebsiella aerogenes",
+          "taxid": 548
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/kaerogenes"
+    },
+    {
+      "name": "Kingella kingae",
+      "scheme_version": "0",
+      "shortname": "kkingae",
+      "url": "http://bigsdb.web.pasteur.fr/kingella/",
+      "cite": "Basmaci R, Yagupsky P, Ilharreborde B, Guyot K, Porat N, Chomton M, Thiberge JM, Mazda K, Bingen E, Bonacorsi S, Bidet P.. 2012. Multilocus sequence typing and rtxA toxin gene sequencing analysis of Kingella kingae isolates demonstrates genetic diversity and international clones. PLoS One. 7(5):e38078.PMC 22693588",
+      "targets": [
+        {
+          "name": "Kingella kingae",
+          "taxid": 504
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/kkingae"
+    },
+    {
+      "name": "Klebsiella oxytoca",
+      "scheme_version": "0",
+      "shortname": "koxytoca",
+      "url": "https://pubmlst.org/koxytoca/",
+      "cite": "This tool made use of the Klebsiella oxytoca MLST website (https://pubmlst.org/koxytoca/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Klebsiella oxytoca",
+          "taxid": 571
+        },
+        {
+          "name": "Klebsiella michiganensis",
+          "taxid": 1134687
+        },
+        {
+          "name": "Klebsiella grimontii",
+          "taxid": 2058152
+        },
+        {
+          "name": "Klebsiella pasteurii",
+          "taxid": 2587529
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/koxytoca"
+    },
+    {
+      "name": "Klebsiella pneumoniae",
+      "scheme_version": "0",
+      "shortname": "kpneumoniae",
+      "url": "http://bigsdb.web.pasteur.fr/klebsiella/",
+      "cite": "Diancourt L, Passet V, Verhoef J, Grimont PA, Brisse S. Multilocus Sequence Typing of Klebsiella pneumoniae nosocomial isolates. J Clin Microbiol 2005, 43:4178-82. PMID 16081970",
+      "targets": [
+        {
+          "name": "Klebsiella pneumoniae",
+          "taxid": 573
+        },
+        {
+          "name": "Klebsiella quasipneumoniae",
+          "taxid": 1463165
+        },
+        {
+          "name": "Klebsiella variicola",
+          "taxid": 244366
+        },
+        {
+          "name": "Klebsiella quasivariicola",
+          "taxid": 2026240
+        },
+        {
+          "name": "Klebsiella africana",
+          "taxid": 2489010
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/kpneumoniae"
+    },
+    {
+      "name": "Kudoa septempunctata",
+      "scheme_version": "0",
+      "shortname": "kseptempunctata",
+      "url": "https://pubmlst.org/kseptempunctata/",
+      "cite": "This tool made use of the Kudoa septempunctata MLST website (https://pubmlst.org/kseptempunctata/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Kudoa septempunctata",
+          "taxid": 751907
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/kseptempunctata"
+    },
+    {
+      "name": "Leptospira spp.",
+      "scheme_version": "0",
+      "shortname": "leptospira",
+      "url": "https://pubmlst.org/leptospira/",
+      "cite": "This tool made use of the Leptospira MLST website (https://pubmlst.org/leptospira/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Leptospira",
+          "taxid": 171
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/leptospira"
+    },
+    {
+      "name": "Candidatus Liberibacter solanacearum",
+      "scheme_version": "0",
+      "shortname": "liberibacter",
+      "url": "https://pubmlst.org/liberibacter/",
+      "cite": "This tool made use of the Candidatus Liberibacter solanacearum MLST website (https://pubmlst.org/liberibacter/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Candidatus Liberibacter solanacearum",
+          "taxid": 556287
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/liberibacter"
+    },
+    {
+      "name": "Listeria monocytogenes",
+      "scheme_version": "0",
+      "shortname": "lmonocytogenes",
+      "url": "http://bigsdb.web.pasteur.fr/listeria/",
+      "cite": "Moura A, Criscuolo A, Pouseele H, Maury MM, Leclercq A, Tarr C, Björkman JT, Dallman T, Reimer A, Enouf V, Larsonneur E, Carleton H, Bracq-Dieye H, Katz LS, Jones L, Touchon M, Tourdjman M, Walker M, Stroika S, Cantinelli T, Chenal-Francisque V, Kucerova Z, Rocha EPC, Nadon C, Grant K, Nielsen EM, Pot B, Gerner-Smidt P, Lecuit M, Brisse S. Whole genome-based population biology and epidemiological surveillance of Listeria monocytogenes. Nature Microbiology 2016, 2:16185. PMID 27723724",
+      "targets": [
+        {
+          "name": "Listeria monocytogenes",
+          "taxid": 1639
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/lmonocytogenes"
+    },
+    {
+      "name": "Lactobacillus salivarius",
+      "scheme_version": "0",
+      "shortname": "lsalivarius",
+      "url": "https://pubmlst.org/lsalivarius/",
+      "cite": "This tool made use of the Lactobacillus salivarius Multi Locus Sequence Typing website (https://pubmlst.org/lsalivarius/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Lactobacillus salivarius",
+          "taxid": 1624
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/lsalivarius"
+    },
+    {
+      "name": "Mycobacterium abscessus",
+      "scheme_version": "0",
+      "shortname": "mabscessus",
+      "url": "https://bigsdb.pasteur.fr/mycoabscessus/",
+      "cite": "This tool made use of the Mycobacterium abscessus complex MLST website (https://bigsdb.pasteur.fr/mycoabscessus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycobacterium abscessus",
+          "taxid": 36809
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mabscessus"
+    },
+    {
+      "name": "Mycoplasma agalactiae",
+      "scheme_version": "0",
+      "shortname": "magalactiae",
+      "url": "https://pubmlst.org/magalactiae/",
+      "cite": "This tool made use of the Mycoplasma agalactiae Multi Locus Sequence Typing website (https://pubmlst.org/magalactiae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma agalactiae",
+          "taxid": 2110
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/magalactiae"
+    },
+    {
+      "name": "Mycoplasma bovis",
+      "scheme_version": "0",
+      "shortname": "mbovis",
+      "url": "https://pubmlst.org/mbovis",
+      "cite": "This tool made use of the Mycoplasma bovis Multi Locus Sequence Typing website (https://pubmlst.org/mbovis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma bovis",
+          "taxid": 28903
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mbovis"
+    },
+    {
+      "name": "Macrococcus canis",
+      "scheme_version": "0",
+      "shortname": "mcanis",
+      "url": "https://pubmlst.org/mcanis/",
+      "cite": "This tool made use of the Macrococcus canis MLST website (https://pubmlst.org/mcanis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Macrococcus canis",
+          "taxid": 1855823
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mcanis"
+    },
+    {
+      "name": "Macrococcus caseolyticus",
+      "scheme_version": "0",
+      "shortname": "mcaseolyticus",
+      "url": "https://pubmlst.org/mcaseolyticus/",
+      "cite": "This tool made use of the Macrococcus caseolyticus  MLST website (https://pubmlst.org/mcaseolyticus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Macrococcus caseolyticus",
+          "taxid": 69966
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mcaseolyticus"
+    },
+    {
+      "name": "Moraxella catarrhalis",
+      "scheme_version": "0",
+      "shortname": "mcatarrhalis",
+      "url": "http://mlst.warwick.ac.uk/mlst/dbs/Mcatarrhalis",
+      "cite": "Alikhan NF, Zhou Z,Sergeant MJ, Achtman M (2018) A genomic overview of the population structure of Salmonella. PLoS Genet 14 (4): e1007261. https://doi.org/10.1371/journal.pgen.1007261",
+      "targets": [
+        {
+          "name": "Moraxella catarrhalis",
+          "taxid": 480
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mcatarrhalis"
+    },
+    {
+      "name": "Mannheimia haemolytica",
+      "scheme_version": "0",
+      "shortname": "mhaemolytica",
+      "url": "https://pubmlst.org/mhaemolytica/",
+      "cite": "This tool made use of the Mannheimia haemolytica MLST website (https://pubmlst.org/mhaemolytica/) sited at the University of Oxford (Jolley et al. 2004, BMC Bioinformatics, 5:86). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mannheimia haemolytica",
+          "taxid": 75985
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mhaemolytica"
+    },
+    {
+      "name": "Mycoplasma hyopneumoniae",
+      "scheme_version": "0",
+      "shortname": "mhyopneumoniae",
+      "url": "https://pubmlst.org/mhyopneumoniae/",
+      "cite": "This tool made use of the Mycoplasma hyopneumoniae MLST website (https://pubmlst.org/mhyopneumoniae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma hyopneumoniae",
+          "taxid": 2099
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mhyopneumoniae"
+    },
+    {
+      "name": "Mycoplasma hyorhinis",
+      "scheme_version": "0",
+      "shortname": "mhyorhinis",
+      "url": "https://pubmlst.org/mhyorhinis/",
+      "cite": "This tool made use of the Mycoplasma hyorhinis MLST website (https://pubmlst.org/mhyorhinis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma hyorhinis",
+          "taxid": 2100
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mhyorhinis"
+    },
+    {
+      "name": "Mycoplasma iowae",
+      "scheme_version": "0",
+      "shortname": "miowae",
+      "url": "https://pubmlst.org/miowae/",
+      "cite": "This tool made use of the Mycoplasma iowae MLST website (https://pubmlst.org/miowae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma iowae",
+          "taxid": 2116
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/miowae"
+    },
+    {
+      "name": "Mycobacterium massiliense",
+      "scheme_version": "0",
+      "shortname": "mmassiliense",
+      "url": "https://bigsdb.pasteur.fr/mycoabscessus/",
+      "cite": "This tool made use of the Mycobacterium abscessus complex MLST website (https://https://bigsdb.pasteur.fr/mycoabscessus//mabscessus/) sited at the Pasteur Institute.",
+      "targets": [
+        {
+          "name": "Mycobacterium massiliense",
+          "taxid": 1962118
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mmassiliense"
+    },
+    {
+      "name": "Melissococcus plutonius",
+      "scheme_version": "0",
+      "shortname": "mplutonius",
+      "url": "https://pubmlst.org/mplutonius/",
+      "cite": "This tool made use of the Melissococcus plutonius MLST website (https://pubmlst.org/mplutonius/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Melissococcus plutonius",
+          "taxid": 33970
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mplutonius"
+    },
+    {
+      "name": "Mycoplasma pneumoniae",
+      "scheme_version": "0",
+      "shortname": "mpneumoniae",
+      "url": "https://pubmlst.org/mpneumoniae/",
+      "cite": "This tool made use of the Mycoplasma pneumoniae MLST website (https://pubmlst.org/mpneumoniae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma pneumoniae",
+          "taxid": 2104
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mpneumoniae"
+    },
+    {
+      "name": "Mycoplasma synoviae",
+      "scheme_version": "0",
+      "shortname": "msynoviae",
+      "url": "https://pubmlst.org/msynoviae/",
+      "cite": "This tool made use of the Mycoplasma synoviae MLST website (https://pubmlst.org/msynoviae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycoplasma synoviae",
+          "taxid": 2109
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/msynoviae"
+    },
+    {
+      "name": "Mycobacteria spp.",
+      "scheme_version": "0",
+      "shortname": "mycobacteria",
+      "url": "http://pubmlst.org/mycobacteria",
+      "cite": "This tool made use of the PubMLST Mycobacteria genome database (https://pubmlst.org/mycobacteria/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Mycobacterium",
+          "taxid": 1763
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/mycobacteria"
+    },
+    {
+      "name": "Neisseria spp.",
+      "scheme_version": "0",
+      "shortname": "neisseria",
+      "url": "https://pubmlst.org/neisseria/",
+      "cite": "This tool made use of the Neisseria Multi Locus Sequence Typing website (https://pubmlst.org/neisseria/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust and European Union.",
+      "targets": [
+        {
+          "name": "Neisseria",
+          "taxid": 482
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/neisseria"
+    },
+    {
+      "name": "Ornithobacterium rhinotracheale",
+      "scheme_version": "0",
+      "shortname": "orhinotracheale",
+      "url": "https://pubmlst.org/orhinotracheale/",
+      "cite": "This tool made use of the Ornithobacterium rhinotracheale MLST website (https://pubmlst.org/orhinotracheale/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Ornithobacterium rhinotracheale",
+          "taxid": 28251
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/orhinotracheale"
+    },
+    {
+      "name": "Orientia tsutsugamushi",
+      "scheme_version": "0",
+      "shortname": "otsutsugamushi",
+      "url": "https://pubmlst.org/otsutsugamushi/",
+      "cite": "This tool made use of the Orientia tsutsugamushi MLST website (https://pubmlst.org/otsutsugamushi/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Orientia tsutsugamushi",
+          "taxid": 784
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/otsutsugamushi"
+    },
+    {
+      "name": "Propionibacterium acnes",
+      "scheme_version": "0",
+      "shortname": "pacnes",
+      "url": "https://pubmlst.org/pacnes/",
+      "cite": "This tool made use of the Cutibacterium acnes MLST website (https://pubmlst.org/cacnes/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Propionibacterium acnes",
+          "taxid": 1747
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pacnes"
+    },
+    {
+      "name": "Pseudomonas aeruginosa",
+      "scheme_version": "0",
+      "shortname": "paeruginosa",
+      "url": "https://pubmlst.org/paeruginosa/",
+      "cite": "This tool made use of the Pseudomonas aeruginosa MLST website (https://pubmlst.org/paeruginosa/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pseudomonas aeruginosa",
+          "taxid": 287
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/paeruginosa"
+    },
+    {
+      "name": "Photobacterium damselae",
+      "scheme_version": "0",
+      "shortname": "pdamselae",
+      "url": "https://pubmlst.org/pdamselae/",
+      "cite": "This tool made use of the Photobacterium damselae MLST website (https://pubmlst.org/pdamselae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Photobacterium damselae",
+          "taxid": 38293
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pdamselae"
+    },
+    {
+      "name": "Pseudomonas fluorescens",
+      "scheme_version": "0",
+      "shortname": "pfluorescens",
+      "url": "https://pubmlst.org/pfluorescens/",
+      "cite": "This tool made use of the Pseudomonas fluorescens MLST website (https://pubmlst.org/pfluorescens/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pseudomonas fluorescens",
+          "taxid": 294
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pfluorescens"
+    },
+    {
+      "name": "Porphyromonas gingivalis",
+      "scheme_version": "0",
+      "shortname": "pgingivalis",
+      "url": "https://pubmlst.org/pgingivalis/",
+      "cite": "This tool made use of the Porphyromonas gingivalis MLST website (https://pubmlst.org/pgingivalis/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Porphyromonas gingivalis",
+          "taxid": 837
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pgingivalis"
+    },
+    {
+      "name": "Paenibacillus larvae",
+      "scheme_version": "0",
+      "shortname": "plarvae",
+      "url": "https://pubmlst.org/plarvae",
+      "cite": "This tool made use of the Paenibacillus larvae MLST website (https://pubmlst.org/plarvae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Paenibacillus larvae",
+          "taxid": 1464
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/plarvae"
+    },
+    {
+      "name": "Pasteurella multocida#2",
+      "scheme_version": "2",
+      "shortname": "pmultocida_multihost",
+      "url": "https://pubmlst.org/pmultocida/",
+      "cite": "This tool made use of the Pasteurella multocida MLST website (https://pubmlst.org/pmultocida/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pasteurella multocida",
+          "taxid": 747
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pmultocida_multihost"
+    },
+    {
+      "name": "Pasteurella multocida#1",
+      "scheme_version": "1",
+      "shortname": "pmultocida_rirdc",
+      "url": "https://pubmlst.org/pmultocida/",
+      "cite": "This tool made use of the Pasteurella multocida MLST website (https://pubmlst.org/pmultocida/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pasteurella multocida",
+          "taxid": 747
+        }
+      ],
+      "type": "alternative_mlst",
+      "path": "mlst_schemes/pmultocida_rirdc"
+    },
+    {
+      "name": "Pediococcus pentosaceus",
+      "scheme_version": "0",
+      "shortname": "ppentosaceus",
+      "url": "https://pubmlst.org/ppentosaceus/",
+      "cite": "This tool made use of the Pediococcus pentosaceus MLST website (https://pubmlst.org/ppentosaceus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pediococcus pentosaceus",
+          "taxid": 1255
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ppentosaceus"
+    },
+    {
+      "name": "Pseudomonas putida",
+      "scheme_version": "0",
+      "shortname": "pputida",
+      "url": "http://pubmlst.org/pputida",
+      "cite": "This tool made use of the Pseudomonas putida MLST website (https://pubmlst.org/pputida/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Pseudomonas putida",
+          "taxid": 303
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/pputida"
+    },
+    {
+      "name": "Piscirickettsia salmonis",
+      "scheme_version": "0",
+      "shortname": "psalmonis",
+      "url": "http://pubmlst.org/psalmonis",
+      "cite": "This tool made use of the Piscirickettsia salmonis MLST website (https://pubmlst.org/psalmonis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Piscirickettsia salmonis",
+          "taxid": 1238
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/psalmonis"
+    },
+    {
+      "name": "Riemerella anatipestifer",
+      "scheme_version": "0",
+      "shortname": "ranatipestifer",
+      "url": "https://pubmlst.org/ranatipestifer/",
+      "cite": "This tool made use of the Riemerella anatipestifer MLST website (https://pubmlst.org/ranatipestifer/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Riemerella anatipestifer",
+          "taxid": 34085
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ranatipestifer"
+    },
+    {
+      "name": "Rhodococcus spp.",
+      "scheme_version": "0",
+      "shortname": "rhodococcus",
+      "url": "https://pubmlst.org/rhodococcus",
+      "cite": "This tool made use of the Rhodococcus MLST website (https://pubmlst.org/rhodococcus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Rhodococcus",
+          "taxid": 1827
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/rhodococcus"
+    },
+    {
+      "name": "Streptococcus agalactiae",
+      "scheme_version": "0",
+      "shortname": "sagalactiae",
+      "url": "https://pubmlst.org/sagalactiae/",
+      "cite": "This tool made use of the Streptococcus agalactiae MLST website (https://pubmlst.org/sagalactiae/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus agalactiae",
+          "taxid": 1311
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sagalactiae"
+    },
+    {
+      "name": "Staphylococcus aureus",
+      "scheme_version": "0",
+      "shortname": "saureus",
+      "url": "https://pubmlst.org/saureus",
+      "cite": "This tool made use of the Staphylococcus aureus MLST website (https://pubmlst.org/saureus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Staphylococcus aureus",
+          "taxid": 1280
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/saureus"
+    },
+    {
+      "name": "Streptococcus bovis/equinus complex (SBSEC)",
+      "scheme_version": "0",
+      "shortname": "sbsec",
+      "url": "https://pubmlst.org/sbsec/",
+      "cite": "This tool made use of the Streptococcus bovis/equinus complex (SBSEC) MLST website (https://pubmlst.org/sbsec/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus bovis",
+          "taxid": 1335
+        },
+        {
+          "name": "Streptococcus equinus",
+          "taxid": 1335
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sbsec"
+    },
+    {
+      "name": "Streptococcus canis",
+      "scheme_version": "0",
+      "shortname": "scanis",
+      "url": "https://pubmlst.org/scanis/",
+      "cite": "This tool made use of the Streptococcus canis MLST website (https://pubmlst.org/scanis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus canis",
+          "taxid": 1329
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/scanis"
+    },
+    {
+      "name": "Streptococcus dysgalactiae equisimilis",
+      "scheme_version": "0",
+      "shortname": "sdysgalactiae",
+      "url": "https://pubmlst.org/sdysgalactiae/",
+      "cite": "This tool made use of the Streptococcus dysgalactiae MLST website (https://pubmlst.org/sdysgalactiae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus dysgalactiae subsp. equisimilis",
+          "taxid": 119602
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sdysgalactiae"
+    },
+    {
+      "name": "Salmonella enterica",
+      "scheme_version": "0",
+      "shortname": "senterica",
+      "url": "http://mlst.warwick.ac.uk/mlst/dbs/Senterica",
+      "cite": "Alikhan NF, Zhou Z,Sergeant MJ, Achtman M (2018) A genomic overview of the population structure of Salmonella. PLoS Genet 14 (4): e1007261. https://doi.org/10.1371/journal.pgen.1007261",
+      "targets": [
+        {
+          "name": "Salmonella enterica",
+          "taxid": 28901
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/senterica"
+    },
+    {
+      "name": "Staphylococcus epidermidis",
+      "scheme_version": "0",
+      "shortname": "sepidermidis",
+      "url": "https://pubmlst.org/sepidermidis/",
+      "cite": "This tool made use of the Staphylococcus epidermidis MLST website (https://pubmlst.org/sepidermidis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Staphylococcus epidermidis",
+          "taxid": 1282
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sepidermidis"
+    },
+    {
+      "name": "Streptococcus gallolyticus",
+      "scheme_version": "0",
+      "shortname": "sgallolyticus",
+      "url": "https://pubmlst.org/sgallolyticus/",
+      "cite": "This tool made use of the Streptococcus gallolyticus MLST website (https://pubmlst.org/sgallolyticus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus gallolyticus",
+          "taxid": 315405
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sgallolyticus"
+    },
+    {
+      "name": "Staphylococcus haemolyticus",
+      "scheme_version": "0",
+      "shortname": "shaemolyticus",
+      "url": "https://pubmlst.org/shaemolyticus/",
+      "cite": "This tool made use of the Staphylococcus haemolyticus MLST website (https://pubmlst.org/shaemolyticus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Staphylococcus haemolyticus",
+          "taxid": 1283
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/shaemolyticus"
+    },
+    {
+      "name": "Staphylococcus hominis",
+      "scheme_version": "0",
+      "shortname": "shominis",
+      "url": "https://pubmlst.org/shominis",
+      "cite": "This tool made use of the Staphylococcus hominis MLST website (https://pubmlst.org/shominis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Staphylococcus hominis",
+          "taxid": 1290
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/shominis"
+    },
+    {
+      "name": "Sinorhizobium spp.",
+      "scheme_version": "0",
+      "shortname": "sinorhizobium",
+      "url": "https://pubmlst.org/sinorhizobium/",
+      "cite": "This tool made use of the Sinorhizobium MLST website (https://pubmlst.org/sinorhizobium/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Sinorhizobium",
+          "taxid": 28105
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sinorhizobium"
+    },
+    {
+      "name": "Staphylococcus lugdunensis",
+      "scheme_version": "0",
+      "shortname": "slugdunensis",
+      "url": "http://bigsdb.web.pasteur.fr/staphlugdunensis/",
+      "targets": [
+        {
+          "name": "Staphylococcus lugdunensis",
+          "taxid": 28035
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/slugdunensis"
+    },
+    {
+      "name": "Stenotrophomonas maltophilia",
+      "scheme_version": "0",
+      "shortname": "smaltophilia",
+      "url": "https://pubmlst.org/smaltophilia/",
+      "cite": "This tool made use of the Stenotrophomonas maltophilia MLST website (https://pubmlst.org/smaltophilia/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Stenotrophomonas maltophilia",
+          "taxid": 40324
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/smaltophilia"
+    },
+    {
+      "name": "Streptococcus oralis",
+      "scheme_version": "0",
+      "shortname": "soralis",
+      "url": "https://pubmlst.org/soralis/",
+      "cite": "This tool made use of the oral Streptococcus MLST website (https://pubmlst.org/oralstrep/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus oralis",
+          "taxid": 1303
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/soralis"
+    },
+    {
+      "name": "Saprolegnia parasitica",
+      "scheme_version": "0",
+      "shortname": "sparasitica",
+      "url": "http://pubmlst.org/sparasitica",
+      "cite": "This tool made use of the Saprolegnia parasitica MLST website (https://pubmlst.org/sparasitica/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Saprolegnia parasitica",
+          "taxid": 101203
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sparasitica"
+    },
+    {
+      "name": "Streptococcus pneumoniae",
+      "scheme_version": "0",
+      "shortname": "spneumoniae",
+      "url": "https://pubmlst.org/spneumoniae/",
+      "cite": "This tool made use of the Streptococcus pneumoniae MLST website (https://pubmlst.org/spneumoniae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus pneumoniae",
+          "taxid": 1313
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/spneumoniae"
+    },
+    {
+      "name": "Staphylococcus pseudintermedius",
+      "scheme_version": "0",
+      "shortname": "spseudintermedius",
+      "url": "https://pubmlst.org/spseudintermedius/",
+      "cite": "This tool made use of the Staphylococcus pseudintermedius MLST website (https://pubmlst.org/spseudintermedius/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Staphylococcus pseudintermedius",
+          "taxid": 283734
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/spseudintermedius"
+    },
+    {
+      "name": "Streptococcus pyogenes",
+      "scheme_version": "0",
+      "shortname": "spyogenes",
+      "url": "https://pubmlst.org/spyogenes",
+      "cite": "This tool made use of the Streptococcus pyogenes MLST website (https://pubmlst.org/spyogenes/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus pyogenes",
+          "taxid": 1314
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/spyogenes"
+    },
+    {
+      "name": "Streptococcus suis",
+      "scheme_version": "0",
+      "shortname": "ssuis",
+      "url": "https://pubmlst.org/ssuis",
+      "cite": "This tool made use of the Streptococcus suis MLST website (https://pubmlst.org/ssuis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus suis",
+          "taxid": 1307
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ssuis"
+    },
+    {
+      "name": "Streptococcus thermophilus",
+      "scheme_version": "0",
+      "shortname": "sthermophilus",
+      "url": "http://bigsdb.web.pasteur.fr/streptococcus/",
+      "cite": "Delorme C, Legravet N., Jamet E., Hoarau C., Alexandre B., El-Sharoud W.M., Darwish M.S., Renault P. 2017. Study of Streptococcus thermophilus population on a world-wide and historical collection by a new MLST scheme. Int. J. Food Microbiol. 242:70-81. PMID 27894009",
+      "targets": [
+        {
+          "name": "Streptococcus thermophilus",
+          "taxid": 1308
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/sthermophilus"
+    },
+    {
+      "name": "Streptococcus thermophilus#2",
+      "scheme_version": "2",
+      "shortname": "sthermophilus_2",
+      "url": "https://pubmlst.org/sthermophilus",
+      "cite": "This tool made use of the Streptococcus thermophilus MLST website (https://pubmlst.org/sthermophilus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus thermophilus",
+          "taxid": 1308
+        }
+      ],
+      "type": "alternative_mlst",
+      "path": "mlst_schemes/sthermophilus_2"
+    },
+    {
+      "name": "Streptomyces spp",
+      "scheme_version": "0",
+      "shortname": "streptomyces",
+      "url": "https://pubmlst.org/streptomyces/",
+      "cite": "This tool made use of the Streptomyces MLST website (https://pubmlst.org/streptomyces/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptomyces",
+          "taxid": 1883
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/streptomyces"
+    },
+    {
+      "name": "Streptococcus uberis",
+      "scheme_version": "0",
+      "shortname": "suberis",
+      "url": "https://pubmlst.org/suberis/",
+      "cite": "This tool made use of the Streptococcus uberis MLST website (https://pubmlst.org/suberis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus uberis",
+          "taxid": 1349
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/suberis"
+    },
+    {
+      "name": "Streptococcus zooepidemicus",
+      "scheme_version": "0",
+      "shortname": "szooepidemicus",
+      "url": "https://pubmlst.org/szooepidemicus/",
+      "cite": "This tool made use of the Streptococcus zooepidemicus MLST website (https://pubmlst.org/szooepidemicus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Streptococcus zooepidemicus",
+          "taxid": 40041
+        },
+        {
+          "name": "Streptococcus equi",
+          "taxid": 1336
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/szooepidemicus"
+    },
+    {
+      "name": "Taylorella spp.",
+      "scheme_version": "0",
+      "shortname": "taylorella",
+      "url": "https://pubmlst.org/taylorella/",
+      "cite": "This tool made use of the Taylorella MLST website (https://pubmlst.org/taylorella/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Taylorella",
+          "taxid": 29574
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/taylorella"
+    },
+    {
+      "name": "Tenacibaculum spp.",
+      "scheme_version": "0",
+      "shortname": "tenacibaculum",
+      "url": "https://pubmlst.org/tenacibaculum/",
+      "cite": "This tool made use of the Tenacibaculum MLST website (https://pubmlst.org/tenacibaculum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Tenacibaculum",
+          "taxid": 104267
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/tenacibaculum"
+    },
+    {
+      "name": "Treponema pallidum",
+      "scheme_version": "0",
+      "shortname": "tpallidum",
+      "url": "http://pubmlst.org/tpallidum",
+      "cite": "This tool made use of the Treponema pallidum MLST website (https://pubmlst.org/tpallidum/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Treponema pallidum",
+          "taxid": 160
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/tpallidum"
+    },
+    {
+      "name": "Trichomonas vaginalis",
+      "scheme_version": "0",
+      "shortname": "tvaginalis",
+      "url": "https://pubmlst.org/tvaginalis/",
+      "cite": "This tool made use of the Trichomonas vaginalis MLST website (https://pubmlst.org/tvaginalis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Trichomonas vaginalis",
+          "taxid": 5722
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/tvaginalis"
+    },
+    {
+      "name": "Ureaplasma spp.",
+      "scheme_version": "0",
+      "shortname": "ureaplasma",
+      "url": "http://pubmlst.org/ureaplasma",
+      "cite": "This tool made use of the Ureaplasma MLST website (https://pubmlst.org/ureaplasma/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Ureaplasma",
+          "taxid": 2129
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ureaplasma"
+    },
+    {
+      "name": "Vibrio cholerae",
+      "scheme_version": "0",
+      "shortname": "vcholerae",
+      "url": "https://pubmlst.org/vcholerae/",
+      "cite": "This tool made use of the Vibrio cholerae MLST website (https://pubmlst.org/vcholerae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio cholerae",
+          "taxid": 666
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/vcholerae"
+    },
+    {
+      "name": "Vibrio cholerae#2",
+      "scheme_version": "2",
+      "shortname": "vcholerae2",
+      "url": "http://pubmlst.org/vcholerae",
+      "cite": "This tool made use of the Vibrio cholerae MLST website (https://pubmlst.org/vcholerae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio cholerae",
+          "taxid": 666
+        }
+      ],
+      "type": "alternative_mlst",
+      "path": "mlst_schemes/vcholerae2"
+    },
+    {
+      "name": "Vibrio spp.",
+      "scheme_version": "0",
+      "shortname": "vibrio",
+      "url": "https://pubmlst.org/vibrio",
+      "cite": "This tool made use of the Vibrio spp. MLSA website (https://pubmlst.org/vibrio/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio",
+          "taxid": 662
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/vibrio"
+    },
+    {
+      "name": "Vibrio parahaemolyticus",
+      "scheme_version": "0",
+      "shortname": "vparahaemolyticus",
+      "url": "https://pubmlst.org/vparahaemolyticus/",
+      "cite": "This tool made use of the Vibrio parahaemolyticus MLST website (https://pubmlst.org/vparahaemolyticus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio parahaemolyticus",
+          "taxid": 670
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/vparahaemolyticus"
+    },
+    {
+      "name": "Vibrio tapetis",
+      "scheme_version": "0",
+      "shortname": "vtapetis",
+      "url": "https://pubmlst.org/vtapetis/",
+      "cite": "This tool made use of the Vibrio tapetis MLST website (https://pubmlst.org/vtapetis/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio tapetis",
+          "taxid": 52443
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/vtapetis"
+    },
+    {
+      "name": "Vibrio vulnificus",
+      "scheme_version": "0",
+      "shortname": "vvulnificus",
+      "url": "https://pubmlst.org/vvulnificus/",
+      "cite": "This tool made use of the Vibrio vulnificus Multi Locus Sequence Typing website (https://pubmlst.org/vvulnificus/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:595). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Vibrio vulnificus",
+          "taxid": 672
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/vvulnificus"
+    },
+    {
+      "name": "Wolbachia",
+      "scheme_version": "0",
+      "shortname": "wolbachia",
+      "url": "https://pubmlst.org/wolbachia/",
+      "cite": "This tool made use of the MLST website (https://pubmlst.org/wolbachia/) sited at the University of Oxford (Jolley & Maiden 2010, BMC Bioinformatics, 11:593). The development and maintenance of this site has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Wolbachia",
+          "taxid": 953
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/wolbachia"
+    },
+    {
+      "name": "Xylella fastidiosa",
+      "scheme_version": "0",
+      "shortname": "xfastidiosa",
+      "url": "https://pubmlst.org/xfastidiosa/",
+      "cite": "This tool made use of the Xylella fastidiosa MLST website (https://pubmlst.org/fastidiosa/) sited at the University of Oxford (Jolley et al. 2004, BMC Bioinformatics, 5:86). The development and maintenance of this site has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Xylella fastidiosa",
+          "taxid": 2371
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/xfastidiosa"
+    },
+    {
+      "name": "Yersinia spp.",
+      "scheme_version": "0",
+      "shortname": "yersinia",
+      "url": "https://pubmlst.org/yersinia/",
+      "cite": "This tool made use of the Yersinia MLST website (https://pubmlst.org/yersinia/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Yersinia",
+          "taxid": 629
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/yersinia"
+    },
+    {
+      "name": "Yersinia pseudotuberculosis",
+      "scheme_version": "0",
+      "shortname": "ypseudotuberculosis",
+      "url": "http://mlst.warwick.ac.uk/mlst/dbs/Ypseudotuberculosis",
+      "cite": "Alikhan NF, Zhou Z,Sergeant MJ, Achtman M (2018) A genomic overview of the population structure of Salmonella. PLoS Genet 14 (4): e1007261. https://doi.org/10.1371/journal.pgen.1007261",
+      "targets": [
+        {
+          "name": "Yersinia pseudotuberculosis",
+          "taxid": 633
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/ypseudotuberculosis"
+    },
+    {
+      "name": "Yersinia ruckeri",
+      "scheme_version": "0",
+      "shortname": "yruckeri",
+      "url": "https://pubmlst.org/yruckeri/",
+      "cite": "This tool made use of the Yersinia ruckeri MLST website (https://pubmlst.org/yruckeri/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+      "targets": [
+        {
+          "name": "Yersinia ruckeri",
+          "taxid": 29486
+        }
+      ],
+      "type": "mlst",
+      "path": "mlst_schemes/yruckeri"
+    },
+    {
+      "name": "NG-STAR 2.0",
+      "scheme_version": "2",
+      "shortname": "ngstar",
+      "url": "https://ngstar.canada.ca",
+      "cite": "Neisseria gonorrhoeae Sequence Typing for Antimicrobial Resistance, a Novel Antimicrobial Resistance Multilocus Typing Scheme for Tracking Global Dissemination of N. gonorrhoeae Strains. W. Demczuk et al. Journal of Clinical Microbiology Apr 2017, 55 (5) 1454-1468; DOI: 10.1128/JCM.00100-17",
+      "targets": [
+        {
+          "name": "Neisseria gonorrhoeae",
+          "taxid": 485
+        }
+      ],
+      "type": "ngstar",
+      "path": "other_schemes/ng_star"
+    }
+  ]
+}

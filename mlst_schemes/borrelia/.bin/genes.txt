@@ -1,0 +1,8 @@
+clpA
+clpX
+nifS
+pepX
+pyrG
+recG
+rplB
+uvrA

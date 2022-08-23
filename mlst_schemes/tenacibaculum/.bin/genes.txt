@@ -1,0 +1,7 @@
+atpA
+dnaK
+glyA
+gyrB
+infB
+rlmN
+tgt

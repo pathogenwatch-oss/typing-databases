@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+SCHEME="pubmlst_bpseudomallei_seqdef"
+
+# From https://stackoverflow.com/a/246128 by Dave Dopson
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+BIN_DIR="$( cd $DIR/../../../bin && pwd )"
+
+GENE_FILE=${DIR}/genes.txt
+URL_PREFIX="http://rest.pubmlst.org/db/${SCHEME}/loci"
+SCHEME_DIR="$( cd $DIR/.. && pwd; )"
+
+${BIN_DIR}/bigsdb_cgmlst_download.py $GENE_FILE $URL_PREFIX $SCHEME_DIR

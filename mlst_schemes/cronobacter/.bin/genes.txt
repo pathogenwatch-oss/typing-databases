@@ -1,0 +1,7 @@
+atpD
+fusA
+glnS
+gltB
+gyrB
+infB
+pps

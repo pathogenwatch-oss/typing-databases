@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -eu -o pipefail
+
+SCHEME="https://www.cgmlst.org/ncs/schema/741110/alleles/"
+
+# From https://stackoverflow.com/a/246128 by Dave Dopson
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+BIN_DIR="$( cd $DIR/../../../bin && pwd )"
+SCHEME_DIR="$( cd $DIR/.. && pwd; )"
+SCHEME_NAME="$(basename $SCHEME_DIR)"
+
+echo "Downloading genes for $SCHEME" 1>&2
+[[ ! -f $DIR/scheme.zip ]] || rm -v $DIR/scheme.zip
+curl --silent --output $DIR/scheme.zip --fail -H "User-Agent: mlst-downloader (https://gist.github.com/bewt85/16f2b7b9c3b331f751ce40273240a2eb)" $SCHEME
+
+echo "Extracting genes for $SCHEME" 1>&2
+[[ ! -d $DIR/scheme ]] || rm -r $DIR/scheme
+mkdir $DIR/scheme
+cd $DIR/scheme
+unzip -oq $DIR/scheme.zip
+
+while read gene; do
+  ${BIN_DIR}/NormalizeAlleles.py $DIR/scheme/${gene}.fasta $SCHEME_DIR/${gene}.fa.gz && rm $DIR/scheme/${gene}.fasta
+  echo "Reformatted $gene for $SCHEME_NAME"
+done < $DIR/genes.txt
+
+cd $DIR && rm -r scheme.zip scheme

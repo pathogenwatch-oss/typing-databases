@@ -1,0 +1,9 @@
+gap
+aroA
+glk
+dnaK
+gyrB
+trpE
+cobQ
+int_hyp
+omp25

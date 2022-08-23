@@ -1,0 +1,7 @@
+gapdh
+tpi
+mdh
+icl
+rpoB
+recA
+adk

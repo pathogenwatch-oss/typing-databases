@@ -1,0 +1,7 @@
+atpA
+dnaE
+dnaK
+fusA
+leuA
+odhA
+rpoB
