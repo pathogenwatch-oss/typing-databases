@@ -4,6 +4,7 @@ import gzip
 import logging
 import os
 import shutil
+import subprocess
 import sys
 
 from NormalizeAlleles import normalize_fasta
@@ -11,16 +12,17 @@ from pubmlst_mlst_download import download
 from retry import retry
 
 
-@retry(backoff=2, delay=1, max_delay=1200)
+@retry(tries=1, backoff=2, delay=1, max_delay=1200)
 def download_profiles(url_prefix, out_file):
-    url = f"{url_prefix}/profiles_csv"
-    print(url, file=sys.stderr)
-    r = download(url, timeout=600)
-    shutil.copyfileobj(r, out_file)
+
+    p = subprocess.run(['curl', '-o', f'{out_file}', f'{url_prefix}/profiles_csv'])
+    if p.returncode!= 0:
+        logging.error(f"Failed to download profiles: {p.stderr}")
+        sys.exit(1)
     logging.debug(f"Downloaded scheme profiles")
 
 
-@retry(backoff=2, delay=1, max_delay=1200)
+@retry(tries=3, backoff=2, delay=1, max_delay=1200)
 def download_alleles(url_prefix, gene, out_file):
     url = f"{url_prefix}/{gene}/alleles_fasta"
     logging.debug(f"Downloading alleles for {gene}")
@@ -59,5 +61,4 @@ if __name__ == "__main__":
     print(f"Downloaded alleles to {os.path.basename(out_dir)}")
 
     if args.profiles:
-        with open(os.path.join(out_dir, "profiles.tsv"), 'wb') as f:
-            download_profiles(args.scheme_url, f)
+        download_profiles(args.scheme_url, "profiles.tsv")
