@@ -91,6 +91,10 @@
         {
           "name": "Klebsiella africana",
           "taxid": 2489010
+        },
+        {
+          "name": "Klebsiella quasivariicola",
+          "taxid": 2026240
         }
       ],
       "url": "https://bigsdb.pasteur.fr/klebsiella/",
