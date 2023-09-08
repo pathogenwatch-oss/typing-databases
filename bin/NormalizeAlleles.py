@@ -11,6 +11,8 @@ def parse(f):
     contigs = []
     for line in lines:
         if line.startswith(b'>'):
+            if line.startswith(b'>MTRR_CONTIG'):
+                continue
             contigs.append((line[1:], []))
         elif not line:
             continue

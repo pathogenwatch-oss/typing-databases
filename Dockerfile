@@ -15,7 +15,7 @@ COPY cgmlst_schemes /db/cgmlst_schemes
 
 COPY mlst_schemes /db/mlst_schemes
 
-COPY other_schemes /db/other_schemes
+COPY other_schemes/other_schemes /db/other_schemes
 
 COPY schemes.json /db/schemes.json
 
