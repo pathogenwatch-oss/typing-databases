@@ -3,7 +3,8 @@ FROM python:3.10-slim
 RUN apt update && \
     apt install -y curl jq git unzip && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install xlrd==1.2.0 PyYAML==5.1.2 retry
+    pip install --no-cache-dir xlrd==1.2.0 PyYAML==5.1.2 retry && \
+    pip cache purge
 
 RUN mkdir -p /db
 
