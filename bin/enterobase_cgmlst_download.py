@@ -37,7 +37,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description='Download an Enterobase cgMLST scheme')
-    parser.add_argument('--profiles', help='Download profiles', action='store_true', default=True)
+    parser.add_argument('--profiles', help='Download profiles', action='store_true', default=False)
     parser.add_argument('genes', help='path to file containing a list of genes')
     parser.add_argument('url', help='URL prefix for the scheme')
     parser.add_argument('out', help='directory to hold the outputs')

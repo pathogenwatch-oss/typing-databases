@@ -1,8 +1,10 @@
 # Typing databases
 
-This repository holds the build scripts and Dockerfile for building the typing database schemes for the MLST/cgMLST tool as an image.
+This repository holds the build scripts and Dockerfile for building the typing database schemes for the MLST/cgMLST tool
+as an image.
 
-Create a release by running the Dockerfile with no arguments and push the versioned container or create a scheme or scheme-type specific release.
+Create a release by running the Dockerfile with no arguments and push the versioned container or create a scheme or
+scheme-type specific release.
 
 This README will describe both how to get the files locally, and how to run the Dockerfile.
 
@@ -23,17 +25,40 @@ The script is "polite" and will download the schemes slowly. It may take a an ho
 connection.
 
 ## Quick usage (docker)
-### Full build
+
+### Production builds
+
+Produces 4 images with date stamps.
+
 ```
-%> docker build --rm -t typing-databases:202208191648 .
+%> ./build.sh
 ```
+
+### Full build in a single image
+
+For ease of testing
+
+```
+%> docker build --rm -t typing-databases:all .
+```
+
 ### MLST build
+
 ```
-%> docker build --rm -t typing-databases:202208191648-mlst --build-arg TYPE=mlst.
+%> docker build --rm -t typing-databases:mlst --build-arg TYPE=mlst.
+%> docker build --rm -t typing-databases:mlst2 --build-arg TYPE=alternative_mlst.
 ```
+
 ### Scheme build
+
 ```
-%> docker build --rm -t typing-databases:202208191648-saureus --build-arg SCHEME=saureus
+%> docker build --rm -t typing-databases:saureus --build-arg SCHEME=saureus
+```
+
+### NG-STAR build
+
+```
+%> docker build --rm -t typing-databases:ngstar --build-arg SCHEME=ngstar
 ```
 
 ## Adding a new scheme
@@ -57,11 +82,6 @@ connection.
    `./bin/update -s SCHEME_SHORTNAME`
 1. When your scripts are working update [schemes.json](schemes.json) with the details of your scheme (see below).
 1. You can now test your download script by running `./bin/update -s SCHEME_SHORTNAME`.
-
-## Warnings
-
-Git gets a bit funny if you change loads of files at once. It can take a long time to run `git status`, `git add`
-, `git commit` etc (i.e. minutes for each command).
 
 ## Usage
 
