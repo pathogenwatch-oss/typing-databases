@@ -1102,12 +1102,28 @@
       "cite": "This tool made use of the Enterobacter cloacae MLST website (https://pubmlst.org/ecloacae/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
       "targets": [
         {
+          "name": "Enterobacter cloacae complex",
+          "taxid": 354276
+        },
+        {
           "name": "Enterobacter cloacae",
           "taxid": 550
         },
         {
           "name": "Enterobacter asburiae",
           "taxid": 61645
+        },
+                {
+          "name": "Enterobacter cancerogenus",
+          "taxid": 69218
+        },
+        {
+          "name": "Enterobacter chengduensis",
+          "taxid": 2494701
+        },
+        {
+          "name": "Enterobacter chuandaensis",
+          "taxid": 2497875
         },
         {
           "name": "Enterobacter hormaechei",
@@ -1126,8 +1142,8 @@
           "taxid": 69220
         },
         {
-          "name": "Enterobacter cancerogenus",
-          "taxid": 69218
+          "name": "Enterobacter pasteurii",
+          "taxid": 3029761
         },
         {
           "name": "Enterobacter roggenkampii",
