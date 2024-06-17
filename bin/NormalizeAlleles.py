@@ -25,8 +25,8 @@ def normalize_fasta(input_, output):
     contigs = parse(input_)
     contig_names = []
     for name, contig in contigs:
-        m = re.match(b'^(.+[_-])?([0-9]+(\.[0-9]+)?)$', name)
-        assert m != None, f"Badly formated allele '{name}'"
+        m = re.match(b'^(.+[_-])?([0-9]+(\\.[0-9]+)?)$', name)
+        assert m is not None, f"Badly formated allele '{name}'"
         if bad_char.search(contig):
             # Some schemes had non-ACGT characters
             continue

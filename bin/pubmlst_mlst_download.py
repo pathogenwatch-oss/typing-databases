@@ -8,8 +8,12 @@ import socket
 import ssl
 import sys
 import urllib.request
+from datetime import datetime
+from typing import Any, Iterable
 
+import requests
 from retry import retry
+
 from NormalizeAlleles import normalize_fasta
 
 profilesTemplate = "{server}?db=pubmlst_{scheme}_seqdef&page=downloadProfiles&scheme_id={scheme_id}"

@@ -34,6 +34,12 @@ Produces 4 images with date stamps.
 %> ./build.sh
 ```
 
+Or to build a specific image type (`cgmlst`, `mlst`, `ngstar`, `alternative_mlst`)
+
+```
+%> ./build.sh cgmlst
+```
+
 ### Full build in a single image
 
 For ease of testing
@@ -49,10 +55,10 @@ For ease of testing
 %> docker build --rm -t typing-databases:mlst2 --build-arg TYPE=alternative_mlst.
 ```
 
-### Scheme build
+### Single scheme build
 
 ```
-%> docker build --rm -t typing-databases:saureus --build-arg SCHEME=saureus
+%> docker build --rm --build-arg SCHEME=paeruginosa --build-arg TYPE=mlst -t typing-databases:231123-paeruginosa-mlst .
 ```
 
 ### NG-STAR build

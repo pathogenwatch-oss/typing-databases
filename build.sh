@@ -14,7 +14,7 @@ echo ${DATE}
 
 if [ ${TYPE} == "all" ] || [ ${TYPE} == "mlst" ]; then
   MLST_IMAGE=registry.gitlab.com/cgps/pathogenwatch/analyses/typing-databases:${DATE}-mlst
-  docker --pull build --rm -t ${MLST_IMAGE} --build-arg TYPE=mlst .
+  docker ${PULL} build --rm -t ${MLST_IMAGE} --build-arg TYPE=mlst .
   docker push ${MLST_IMAGE}
 fi
 
