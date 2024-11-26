@@ -1,7 +1,0 @@
-glmU_1
-pntA_1
-sucA_1
-tpiA_1
-pfkB_1
-mreA_1
-caiB_1

@@ -1,5 +1,0 @@
-gatB
-coxA
-hcpA
-ftsZ
-fbpA

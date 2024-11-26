@@ -1,36 +1,37 @@
-FROM python:3.10-slim
+FROM python:3.11-slim AS downloader
 
 RUN apt update && \
     apt install -y curl jq git unzip && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install --no-cache-dir xlrd==1.2.0 PyYAML==5.1.2 retry && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /build/db
+
+COPY requirements-common.txt requirements-prod.txt /
+
+RUN pip install --no-cache-dir -r requirements-prod.txt && \
     pip cache purge
 
-RUN mkdir -p /db
+COPY downloaders /build/downloaders
+COPY download_schemes.py /build/download_schemes.py
+COPY schemes.json /build/schemes.json
 
-COPY requirements.txt /db/
+WORKDIR /build/
 
-COPY bin /db/bin
+ARG COMMAND=full
+ARG BUILD_DATE
+LABEL build_data=$BUILD_DATE
 
-COPY cgmlst_schemes /db/cgmlst_schemes
+ENV COMMAND="${COMMAND}"
 
-COPY mlst_schemes /db/mlst_schemes
+RUN python download_schemes.py ${COMMAND} -o db/
 
-COPY other_schemes/other_schemes /db/other_schemes
+FROM alpine:3.20 AS archive
 
-COPY schemes.json /db/schemes.json
+COPY --from=downloader /build/db /db
+
+COPY --from=downloader /build/selected_schemes.json /db/schemes.json
 
 WORKDIR /db/
 
-ARG SCHEME
-
-ARG TYPE
-
-ENV SCHEME=${SCHEME:-IGNORE}
-
-ENV TYPE=${TYPE:-IGNORE}
-
-RUN /db/bin/update -t "${TYPE}" -s "${SCHEME}"
-
-ENTRYPOINT /bin/bash
+ENTRYPOINT ["cat", "/db/schemes.json"]
 

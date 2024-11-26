@@ -1,7 +1,0 @@
-dnaB
-groEL
-gyrA
-mdh
-gluD
-gpi
-rpoB

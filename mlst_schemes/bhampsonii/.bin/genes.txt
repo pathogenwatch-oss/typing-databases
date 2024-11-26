@@ -1,6 +1,0 @@
-Bha_adh
-Bha_est
-Bha_gdh
-Bha_glpK
-Bha_pgm
-Bha_thi

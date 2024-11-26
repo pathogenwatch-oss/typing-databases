@@ -1,8 +1,0 @@
-Actin
-Cox1
-Cox3
-Ef_1a
-Its1
-Nad4
-Nad5
-Tubulin

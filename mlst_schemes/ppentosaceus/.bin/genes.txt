@@ -1,7 +1,0 @@
-gyrB
-pyc
-pgm
-leuS
-glnA
-dalR
-pgI

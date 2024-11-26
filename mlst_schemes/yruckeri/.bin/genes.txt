@@ -1,6 +1,0 @@
-glnA
-gyrB
-dnaJ
-thrA
-hsp60
-recA

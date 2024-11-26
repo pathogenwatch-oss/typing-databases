@@ -1,7 +1,0 @@
-Bhy_adh
-Bhy_alp
-Bhy_est
-Bhy_gdh
-Bhy_glpK
-Bhy_pgm
-Bhy_thi

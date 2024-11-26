@@ -1,7 +1,0 @@
-Cln_aspA
-Cln_atpA
-Cln_glnA
-Cln_gltA
-Cln_glyA
-Cln_pgm
-Cln_tkt

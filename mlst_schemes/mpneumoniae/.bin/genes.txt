@@ -1,8 +1,0 @@
-ppa
-pgm
-gyrB
-gmk
-glyA
-atpA
-arcC
-adk

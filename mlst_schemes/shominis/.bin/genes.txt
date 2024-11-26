@@ -1,6 +1,0 @@
-arcC
-glpK
-gtr
-pta
-tpiA
-tuf

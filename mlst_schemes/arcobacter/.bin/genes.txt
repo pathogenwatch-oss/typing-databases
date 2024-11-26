@@ -1,7 +1,0 @@
-aspA
-atpA
-glnA
-gltA
-glyA
-pgm
-tkt

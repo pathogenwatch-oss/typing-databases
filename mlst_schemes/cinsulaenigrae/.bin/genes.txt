@@ -1,7 +1,0 @@
-Cin_aspA
-Cin_atpA
-Cin_glnA
-Cin_glyA
-Cin_pgi
-Cin_pgm
-Cin_tkt

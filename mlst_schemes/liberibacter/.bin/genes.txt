@@ -1,7 +1,0 @@
-adk
-atpA
-fbpA
-ftsZ
-glyA
-groEL
-gyrB

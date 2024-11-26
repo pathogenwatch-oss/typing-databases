@@ -1,7 +1,0 @@
-penA
-mtrR
-porB
-ponA
-gyrA
-parC
-23S

@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+RUN mkdir -p /builder
+
+WORKDIR /builder
+
+COPY requirements-common.txt requirements-build.txt requirements-prod.txt /builder/
+
+RUN pip install --no-cache-dir -r requirements-build.txt && \
+    pip cache purge
+
+COPY build.py download_schemes.py Dockerfile /builder/
+
+COPY schemes.json /builder/schemes.json
+
+COPY downloaders /builder/downloaders
+
+ENTRYPOINT ["python", "build.py"]

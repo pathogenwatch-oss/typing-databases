@@ -1,7 +1,0 @@
-glpF
-sigF
-glpT
-Natrans
-rpoB
-ftsA
-clpC

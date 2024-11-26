@@ -1,7 +1,0 @@
-Pas_cpn60
-Pas_fusA
-Pas_gltA
-Pas_pyrG
-Pas_recA
-Pas_rplB
-Pas_rpoB

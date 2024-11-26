@@ -1,7 +1,0 @@
-mh_adk
-mh_aroA
-mh_deoD
-mh_gdhA
-mh_g6pd
-mh_mdh
-mh_pgi

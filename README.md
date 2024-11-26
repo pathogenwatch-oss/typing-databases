@@ -6,100 +6,185 @@ as an image.
 Create a release by running the Dockerfile with no arguments and push the versioned container or create a scheme or
 scheme-type specific release.
 
-This README will describe both how to get the files locally, and how to run the Dockerfile.
+This README will describe both how to get the files locally, and how to run the Dockerfile. If you just want
+to get on with building some production images for Pathogenwatch skip straight to [the Docker instructions](#running-buildpy-via-docker).
 
-## Warning:
+## Quick Build instructions
 
-The NG-STAR update script requires `pip install xlrd==1.2.0`. Ideally either (a) the dependency should be replaced as it
-no longer handles `.xlsx` files or (b) this is put into a Docker container for consistency.
+See the [image builder instructions](Running `build.py` via Docker) for quick instructions on building all the images 
+for a release.
 
-## Quick usage (local)
+## Working with `download_schemes.py`
+
+### Quick usage (local)
 
 ```
-./bin/update
+python download_schemes.py all
 ```
 
 This command will download each of the schemes.
 
-The script is "polite" and will download the schemes slowly. It may take a an hour or more, even on a good internet
-connection.
+The script is "polite" and will download the schemes slowly. It will take a an hour or more, even on a good internet
+connection. The metadata for the downloaded schemes, including the update timestamp and location within the produced
+image, is printed to STDOUT along with being written to `selected_schemes.json`.
 
-## Quick usage (docker)
+### Quick usage (docker)
 
-### Production builds
-
-Produces 4 images with date stamps.
-
-```
-%> ./build.sh
-```
-
-Or to build a specific image type (`cgmlst`, `mlst`, `ngstar`, `alternative_mlst`)
+NB: The BUILD_DATE argument is required to prevent Docker caching the download requests. A random string can be used,
+and it doesn't need to be the date for this to work, but it does provide a handy date label for the image.
 
 ```
-%> ./build.sh cgmlst
+docker build --pull --rm --build-arg BUILD_DATE=2024-12-25 -t registry.gitlab.com/cgps/pathogenwatch/analyses/typing-databases:2024-07-01-all .
 ```
 
-### Full build in a single image
+#### Full build in a single image
 
 For ease of testing
 
 ```
-%> docker build --rm -t typing-databases:all .
+%> docker build --rm --build-arg BUILD_DATE=2024-12-25 -t typing-databases:all .
 ```
 
-### MLST build
+#### Single scheme build
 
 ```
-%> docker build --rm -t typing-databases:mlst --build-arg TYPE=mlst.
-%> docker build --rm -t typing-databases:mlst2 --build-arg TYPE=alternative_mlst.
+%> docker build --rm  --build-arg BUILD_DATE=2024-12-25 --build-arg COMMAND="one klebsiella_1" -t typing-databases:24-07-01_klebsiella_cgmlst .
 ```
 
-### Single scheme build
+## Easy builds with `build.py`
+
+The [`build.py`](build.py) script is provided for conveniently building individual scheme images for all or selected
+schemes. It can be run from the command line or via Docker. It outputs a simple CSV of the scheme shortname, the image tag and the full image name.
+
+### Basic CLI
+
+#### Help and usage info
 
 ```
-%> docker build --rm --build-arg SCHEME=paeruginosa --build-arg TYPE=mlst -t typing-databases:231123-paeruginosa-mlst .
+%> python build.py --help
 ```
 
-### NG-STAR build
+#### Build all images
 
 ```
-%> docker build --rm -t typing-databases:ngstar --build-arg SCHEME=ngstar
+%> python build.py
+```
+
+#### Build a scheme image
+
+`${short_name}` - the short name of the scheme as in the schemes.json file
+
+```
+%> python build.py -n ${short_name}
+```
+
+#### Build all MLST schemes
+
+```
+%> python build.py -t mlst
+```
+
+### Running `build.py` via Docker
+
+For further convenience, it's possible to run `build.py` within a Docker image, creating images on the host machine.
+
+#### Build the builder image
+
+```
+%> docker build --rm --pull -t download-runner -f Dockerfile.build .
+%> docker run --rm download-runner --help
+```
+
+This image can then be run with provided arguments and 
+
+#### Build all images
+
+To create a complete set of fresh scheme images with only Docker installed, run the following:
+
+```
+docker run -v /var/run/docker.sock:/var/run/docker.sock --rm download-runner
 ```
 
 ## Adding a new scheme
 
-1. Make a directory for the scheme. It can be anywhere but maybe reuse `cgmlst_schemes` or `mlst_schemes` if it makes
-   sense.
-1. Create a `.bin` directory within the scheme directory
-1. Add a file called `genes.txt` to the `.bin` directory. Each line should include the name of gene used in the scheme
-1. Create a script called `.bin/download` in your language of choice. This script must download the alleles for each
-   gene into a file called
-   `${gene}.fa.gz` in gzipped Fasta format. Each allele should be on one and only one line and only include the upper
-   case characters `ACGT`.  
-   The sequences should be called `>1`, `>2`, etc. There is a script (and Python functions)
-   called [NormalizeFasta.py](bin/NormalizeAlleles.py)
-   which will make this easier.
-1. If "profiles" are available for the scheme (e.g. for MLST schemes) then these should also be downloaded
-   by `.bin/download` into `profiles.tsv`. These should be a tab delimited file. The header row should have a column
-   called `ST` and be followed by each of the names of genes from `.bin/genes.txt`.
-1. You can check your scheme has output files in the correct format by running `./bin/check.py -d SCHEME_DIRECTORY`. You
-   can update the scheme using
-   `./bin/update -s SCHEME_SHORTNAME`
-1. When your scripts are working update [schemes.json](schemes.json) with the details of your scheme (see below).
-1. You can now test your download script by running `./bin/update -s SCHEME_SHORTNAME`.
+Schemes are managed using the [`schemes.json`](schemes.json) file. To add a scheme, add a new record.
 
-## Usage
+### Example PubMLST scheme record.
 
-You can update a scheme using `bin/update`. The script can take a scheme directory `--directory DIR`, scheme
-shortname `--scheme SHORTNAME` or type of scheme
-`--type cgmlst` (in which case it will update all matching schemes). You can pass the `--commit` flag so that changes
-are committed after each scheme is updated. This is useful because Git commands can run slowly if there are a large
-number of files with uncommitted changes.
+_Note_: Pasteur records take the same format, just replace the host field with `"host": "pasteur"`
 
-## Examples
+_Note2_: `taxid` must be a species or genus level NCBI taxonomy code if being used with Pathogenwatch.
 
-[Alleles file](mlst_schemes/saureus/arcC.fa.gz):
+```
+{
+   "shortname": "borrelia",
+   "host": "pubmlst",
+   "host_path": "pubmlst_borrelia_seqdef"
+   "scheme_id": "1",
+   "type": "mlst",
+   "cite": "This tool made use of the Borrelia MLST website (https://pubmlst.org/borrelia/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
+   "name": "Borrelia spp.",
+   "targets": [
+       {
+           "name": "Borrelia",
+           "taxid": 138
+       }
+   ],
+}
+```
+
+### Example Enterobase scheme record
+_Note_: `host_path` is not required for Enterobase.
+```
+{
+    "shortname": "senterica_1",
+    "host": "enterobase",
+    "scheme_id": "Salmonella.cgMLSTv2",
+    "type": "cgmlst",
+    "cite": [
+        {
+            "text": "Alikhan et al. (2018) PLoS Genet 14 (4): e1007261",
+            "url": "https://doi.org/10.1371/journal.pgen.1007261"
+        }
+    ],
+    "name": "Salmonella enterica cgMLST V2",
+    "targets": [
+        {
+            "name": "Salmonella enterica",
+            "taxid": 28901
+        }
+    ]
+}
+```
+
+### Example Ridom (cgMLST-only) record
+```
+{
+    "shortname": "p_aeruginosa_1",
+    "host": "ridom",
+    "scheme_id": "16115339",
+    "type": "cgmlst",
+    "cite": [
+        {
+            "text": "Tonnies H et al. (2020) J. Clin. Microbiol.",
+            "url": "https://www.ncbi.nlm.nih.gov/pubmed/33328175",
+            "long": "Tonnies H, Prior K, Harmsen D, and Mellmann A. Establishment and evaluation of a core genome multilocus sequence typing scheme for whole-genome sequence-based typing of Pseudomonas aeruginosa. J Clin Microbiol. 2020"
+        }
+    ],
+    "name": "Pseudamonas aeruginosa",
+    "targets": [
+        {
+            "name": "Pseudomonas aeruginosa",
+            "taxid": 287
+        }
+    ]
+}
+```
+
+
+## Output examples
+
+### Allele file
 
 ```
 >1
@@ -116,75 +201,29 @@ TTATTAATCCAACAAGCTAAATCGAACAGTG...
 
 Contigs are numbered. They each appear on one line and only include uppercase 'ACGT'
 
-[Profiles file](mlst_schemes/saureus/profiles.tsv)
+### Profile file
 
 |ST|arcC|aroE|glpF|gmk|pta|tpi|yqiL|clonal_complex| |--|----|----|----|---|---|---|----|--------------| |1 |1 |1 |1 |1
 |1 |1 |1 |CC1 | |2 |2 |2 |2 |2 |2 |2 |26 |CC30 | |3 |1 |1 |1 |9 |1 |1 |12 |CC1 | |4 |10 |10 |8 |6 |10 |3 |2 |CC45 |
 
 This file must include a column per gene and an ST column but it can contain extra columns as well.
 
-[List of genes](mlst_schemes/saureus/.bin/genes.txt)
+### Metadata file
+
+The metadata file contains the time stamp of when the scheme was last updated on the host server (except for Ridom
+schemes), along with the list of genes in the required order for the scheme.
 
 ```
-arcC
-aroE
-glpF
-gmk
-pta
-tpi
-yqiL
+{
+    "last_updated": "2024-06-30",
+    "genes": [
+        "NEIS1753",
+        "mtrR",
+        "NG_porB",
+        "NG_ponA",
+        "NG_gyrA",
+        "NG_parC",
+        "NG_23S"
+    ]
+}
 ```
-
-[Download script](mlst_schemes/saureus/.bin/download)
-
-```bash
-#!/bin/bash
-
-set -eu -o pipefail
-
-SCHEME="saureus"
-
-# From https://stackoverflow.com/a/246128 by Dave Dopson
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-SCHEME_DIR="$( cd $DIR/.. && pwd; )"
-BIN_DIR="$( cd $DIR/../../../bin && pwd; )"
-
-${BIN_DIR}/pubmlst_mlst_download.py $SCHEME ${DIR}/genes.txt $SCHEME_DIR
-```
-
-[Schemes file](schemes.json)
-
-```
-      ...
-      "type": "mlst",
-      "path": "mlst_schemes/sagalactiae"
-    },
-    {
-      "name": "Staphylococcus aureus",
-      "scheme_version": "0",
-      "shortname": "saureus",
-      "url": "https://pubmlst.org/saureus",
-      "cite": "This tool made use of the Staphylococcus aureus MLST website (https://pubmlst.org/saureus/) sited at the University of Oxford (Jolley et al. Wellcome Open Res 2018, 3:124 [version 1; referees: 2 approved]). The development of PubMLST has been funded by the Wellcome Trust.",
-      "targets": [{ "name": "Staphylococcus aureus", "taxid": 1280 }],
-      "type": "mlst",
-      "path": "mlst_schemes/saureus"
-    },
-    {
-      "name": "Streptococcus bovis/equinus complex (SBSEC)",
-      "scheme_version": "0",
-      ...
-```
-
-Required fields:
-
-| Field          | Description                                                                                                                                |
-|----------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| name           | The name of the scheme                                                                                                                     |
-| scheme_version | 0 unless there are multiple version of the scheme                                                                                          |
-| shortname      | a unique name for the scheme (this can be shared between schemes of different types)                                                       |
-| url            | where you can find more details of the scheme                                                                                              |
-| cite           | a citation for the source of the scheme                                                                                                    |
-| targets        | a list of species this scheme can be applied to. This should include the name of the species and the highest taxid it should be applied to |
-| type           | the type of the scheme, currently mlst or cgmlst                                                                                           |
-| path           | the relative path from this file to the directory containing the scheme                                                                    |

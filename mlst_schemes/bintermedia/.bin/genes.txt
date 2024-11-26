@@ -1,7 +1,0 @@
-Bin_adh
-Bin_alp
-Bin_est
-Bin_gdh
-Bin_glpK
-Bin_pgm
-Bin_thi

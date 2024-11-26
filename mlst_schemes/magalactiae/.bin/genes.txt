@@ -1,5 +1,0 @@
-dnaA
-gltX
-gyrB
-metS
-tufA

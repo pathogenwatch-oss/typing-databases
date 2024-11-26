@@ -1,4 +1,0 @@
-gyrB
-pyrH
-recA
-atpA
