@@ -24,7 +24,7 @@ python download_schemes.py all
 
 This command will download each of the schemes.
 
-The script is "polite" and will download the schemes slowly. It will take a an hour or more, even on a good internet
+The script is "polite" and will download the schemes slowly. It will take an hour or more, even on a good internet
 connection. The metadata for the downloaded schemes, including the update timestamp and location within the produced
 image, is printed to STDOUT along with being written to `selected_schemes.json`.
 
