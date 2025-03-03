@@ -2852,6 +2852,21 @@
         }
       ],
       "host_path": "pubmlst_neisseria_seqdef"
+    },
+    {
+      "shortname": "lmonocytogenes_vir",
+      "host": "pasteur",
+      "scheme_id": "5",
+      "type": "mlst",
+      "cite": "Moura A, Criscuolo A, Pouseele H, Maury MM, Leclercq A, Tarr C, Bj\u00f6rkman JT, Dallman T, Reimer A, Enouf V, Larsonneur E, Carleton H, Bracq-Dieye H, Katz LS, Jones L, Touchon M, Tourdjman M, Walker M, Stroika S, Cantinelli T, Chenal-Francisque V, Kucerova Z, Rocha EPC, Nadon C, Grant K, Nielsen EM, Pot B, Gerner-Smidt P, Lecuit M, Brisse S. Whole genome-based population biology and epidemiological surveillance of Listeria monocytogenes. Nature Microbiology 2016, 2:16185. PMID 27723724",
+      "name": "Listeria monocytogenes",
+      "targets": [
+        {
+          "name": "Listeria monocytogenes",
+          "taxid": 1639
+        }
+      ],
+      "host_path": "pubmlst_listeria_seqdef"
     }
   ]
 }
