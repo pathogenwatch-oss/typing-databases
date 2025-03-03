@@ -7,7 +7,8 @@ Create a release by running the Dockerfile with no arguments and push the versio
 scheme-type specific release.
 
 This README will describe both how to get the files locally, and how to run the Dockerfile. If you just want
-to get on with building some production images for Pathogenwatch skip straight to [the Docker instructions](#running-buildpy-via-docker).
+to get on with building some production images for Pathogenwatch skip straight to 
+[the instructions for running build.py in Docker](#running-buildpy-via-docker).
 
 ## Quick Build instructions
 
@@ -54,7 +55,7 @@ For ease of testing
 ## Easy builds with `build.py`
 
 The [`build.py`](build.py) script is provided for conveniently building individual scheme images for all or selected
-schemes. It can be run from the command line or via Docker. It outputs a simple CSV of the scheme shortname, the image tag and the full image name.
+schemes. It can be run from the command line or via Docker. It outputs a simple CSV containing the scheme shortname(s), the image tag(s) and the full image name(s).
 
 ### Basic CLI
 
@@ -95,7 +96,7 @@ For further convenience, it's possible to run `build.py` within a Docker image, 
 %> docker run --rm download-runner --help
 ```
 
-This image can then be run with provided arguments and 
+This image can then be used to generate all the single scheme images or just a selected one.
 
 #### Build all images
 
