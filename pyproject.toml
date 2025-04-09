@@ -1,0 +1,21 @@
+[project]
+name = "download_schemes"
+version = "3.0.0"
+description = "Add your description here"
+requires-python = ">=3.10,<=3.12"
+dependencies = [
+    "beautifulsoup4>=4.13.3",
+    "biopython>=1.85",
+    "python-on-whales>=0.76.1",
+    "rauth>=0.7.3",
+    "tenacity>=9.1.2",
+    "toml>=0.10.2",
+    "typer>=0.15.2",
+]
+
+[project.scripts]
+download_schemes = "download_schemes:download_schemes.app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

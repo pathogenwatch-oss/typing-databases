@@ -1,38 +1,78 @@
 import dataclasses
 import gzip
+import io
 import json
+import logging
 import os
 import shutil
 import socket
 import ssl
-import subprocess
-import sys
 import urllib.request
 import uuid
 import zipfile
 from datetime import datetime
+from functools import partial
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 import requests
-from retry import retry
+from rauth import OAuth1Session
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+)
 
-from downloaders.normalise_alleles import normalise_fasta
+from download_schemes.keycache import KeyCache
+from download_schemes.normalise_alleles import normalise_fasta
 
 
-@retry(tries=10, backoff=2, delay=1, max_delay=1200)
+# @retry(
+#     stop=stop_after_attempt(10),
+#     wait=wait_exponential(multiplier=1, min=1, max=1200),
+# )
+def retry_oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) -> requests.Response:
+    logging.debug(f"Fetching data from authenticated {host} - {database}...")
+    consumer_key = keycache.get_consumer_key(host)
+    session_key = keycache.get_session_key(host, database)
+    session = OAuth1Session(
+        consumer_key[0],
+        consumer_key[1],
+        access_token=session_key[0],
+        access_token_secret=session_key[1],
+    )
+    response = session.get(url)
+    if response.status_code == 301 or response.status_code == 401:
+        logging.error(f"Session access denied. Attempting to regenerate keys as needed for {host}")
+        keycache.delete_key("session", host)
+        retry_oauth_fetch(host, keycache, database, url)
+    # elif response.status_code == 401:
+    #     keycache.delete_key("session", host)
+    #     keycache.delete_key("access", host)
+    #     retry_oauth_fetch(host, keycache, database, url)
+    else:
+        response.raise_for_status()
+    return response
+
+
+@retry(
+    stop=stop_after_attempt(10), wait=wait_exponential(multiplier=1, min=1, max=1200)
+)
 def retry_fetch(url: str, headers: dict[str, str] = None) -> requests.Response:
     if headers is None:
         headers = {}
     r = requests.get(url, headers=headers)
     if r.status_code != 200:
-        print(r, file=sys.stderr)
+        logging.error(f"Failed to fetch {url}: {r.status_code}")
         r.raise_for_status()
     return r
 
 
-@retry(tries=10, backoff=2, delay=1, max_delay=1200)
-def download(url, timeout=10):
+
+@retry(
+    stop=stop_after_attempt(10), wait=wait_exponential(multiplier=1, min=1, max=1200)
+)
+def download(url, timeout=10) -> urllib.request.urlopen:
     req = urllib.request.Request(
         url,
         data=None,
@@ -45,7 +85,7 @@ def download(url, timeout=10):
     ctx.verify_mode = ssl.CERT_NONE
     try:
         r = urllib.request.urlopen(req, context=ctx, timeout=timeout)
-        print(f"Downloaded {url}", file=sys.stderr)
+        logging.debug(f"Downloaded {url}")
     except KeyboardInterrupt:
         raise
     except socket.timeout:
@@ -82,7 +122,7 @@ def enterobase_api_download(
         if r.json() is None:
             break
         offset += limit
-        # print(f"{datetime.now()},{offset},{json['links']['total____records']}")
+        logging.debug(f"{datetime.now()},{offset},{json_r['links']['total____records']}")
         yield json_r
         if json_r["links"]["total____records"] < offset:
             break
@@ -90,47 +130,46 @@ def enterobase_api_download(
 
 @dataclasses.dataclass
 class PubmlstDownloader:
+    host: str
     host_path: str
     scheme_id: int
     type: str
-    api_url: str = "https://rest.pubmlst.org/db"
+    keycache: KeyCache
 
     def __post_init__(self):
+        self.database = f"{self.host_path.replace('pubmlst_', '').replace('_seqdef','')}"
         self.name = f"{self.host_path.replace('_seqdef','')}_{self.scheme_id}"
-        self.base_url = f"{self.api_url}/{self.host_path}"
+        self.base_url = f"{self.keycache.get_rest_url(self.host)}/{self.host_path}"
         self.scheme_url = f"{self.base_url}/schemes/{self.scheme_id}"
         self.loci_url = f"{self.scheme_url}/loci"
         self.alleles_url = f"{self.base_url}/loci"
+        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(retry_oauth_fetch, self.host, self.keycache, self.database)
+
 
     def download_loci(self) -> list[str]:
-        r = retry_fetch(self.loci_url)
+        logging.debug(f"Downloading loci for {self.name}...")
+        r = self.__retry_oauth_fetch(self.loci_url)
         loci: list[str] = []
         stem = f"{self.alleles_url}/"
         for locus in json.loads(r.text)["loci"]:
             loci.append(locus.replace(stem, ""))
         return loci
 
-    @retry(
-        tries=10,
-        backoff=2,
-        delay=1,
-        max_delay=1200,
-    )
     def download_profiles(self, out_dir: Path):
-        p = subprocess.run(
-            [
-                "curl",
-                "-o",
-                out_dir / "profiles.tsv",
-                f"{self.scheme_url}/profiles_csv",
-            ]
-        )
-        if p.returncode != 0:
-            raise Exception(f"Failed to download profiles: {p.stderr}")
+        response = self.__retry_oauth_fetch(f"{self.scheme_url}/profiles_csv")
+
+        if response.status_code == 200:
+            with open(out_dir / "profiles.tsv", "wb") as out_file:
+                out_file.write(response.content)
+        else:
+            raise Exception(
+                f"Failed to download profiles: HTTP status {response.status_code}"
+            )
 
     def fetch_timestamp(self):
+        logging.debug(f"Fetching timestamp for {self.name}...")
         url = self.scheme_url
-        r = retry_fetch(url)
+        r = self.__retry_oauth_fetch(url)
         scheme_metadata = json.loads(r.text)
         return (
             scheme_metadata["last_updated"]
@@ -144,69 +183,28 @@ class PubmlstDownloader:
         scheme_dir.mkdir(parents=True, exist_ok=True)
         scheme_metadata = {"last_updated": self.fetch_timestamp(), "genes": []}
 
+        logging.debug(f"Downloading alleles for {self.name} from {self.host}")
         for locus in self.download_loci():
             alleles_url = f"{self.alleles_url}/{locus}/alleles_fasta"
-            r = download(alleles_url)
-            # PubMLST puts a apostrophe in front of RNA genes it seems
+            logging.debug(f"Downloading alleles for {locus} from {alleles_url}")
+
+            # PubMLST puts an apostrophe in front of RNA genes it seems
             clean_locus = locus.replace("'", "")
             scheme_metadata["genes"].append(clean_locus)
-            with gzip.open(f"{scheme_dir}/{clean_locus}.fa.gz", "wb") as out_f:
-                normalise_fasta(r, out_f)
+            allele_file = Path(f"{scheme_dir}/{clean_locus}.fa.gz")
+            # Remove any existing file to deal with failed downloads.
+            allele_file.unlink(missing_ok=True)
+            with gzip.open(allele_file, "wt") as out_f:
+                response = self.__retry_oauth_fetch(alleles_url)
+                normalise_fasta(response.text, out_f)
 
         if self.type != "cgmlst":
+            logging.debug(f"Downloading profiles for {self.name}")
             self.download_profiles(scheme_dir)
+        logging.debug(f"Writing metadata for {self.name}")
         with open(f"{scheme_dir}/metadata.json", "w") as out_f:
             json.dump(scheme_metadata, out_f, indent=4)
         return scheme_subdir, scheme_metadata["last_updated"]
-
-
-# Basis of working downloader, but not maintained as it seems the FTP site is more robust
-# @dataclasses.dataclass
-# class EnterobaseApiDownloader:
-#     host_path: str  # e.g.senterica/cgMLST_v2
-#     scheme_id: str  # Salmonella.cgMLSTv2
-#     type: str
-#     api_key: str
-#     api_url: str = "https://enterobase.warwick.ac.uk/api/v2.0"
-#     ftp_base_url: str = "https://enterobase.warwick.ac.uk/schemes"
-#
-#     def __post_init__(self):
-#         self.scheme_url = f"{self.api_url}/{self.host_path}"
-#         self.loci_url = f"{self.scheme_url}/loci"
-#         self.alleles_url = f"{self.scheme_url}/alleles"
-#         self.name = f"enterobase_{self.host_path.split('/')[0]}"
-#         self.profiles_url = f"{self.ftp_base_url}{self.scheme_id}/profiles.list.gz"
-#
-#     def download_alleles(self, out_dir: str):
-#         for locus_batch in enterobase_api_download(self.loci_url, self.api_key):
-#             for locus in locus_batch["loci"]:
-#                 fasta = []
-#                 filters: dict[str, str] = {"locus": locus["locus"]}
-#                 for allele_batch in enterobase_api_download(
-#                     self.alleles_url, self.api_key, filters=filters
-#                 ):
-#                     for allele in allele_batch["alleles"]:
-#                         fasta.append(f">{allele['allele_id']}".encode("utf-8"))
-#                         fasta.append(allele["seq"].encode("utf-8"))
-#                 with gzip.open(f"{out_dir}/{locus['locus']}.fa.gz", "wb") as out_file:
-#                     normalise_fasta(fasta, out_file)
-#                 print(
-#                     f"Downloaded alleles for {locus['locus']} to {out_file}",
-#                     file=sys.stderr,
-#                 )
-#
-#     def download_profiles(self, out_dir: Path):
-#         r = download(self.scheme_url)
-#         rz = gzip.GzipFile(fileobj=r)
-#         with open(out_dir / "profiles.tsv.gz", "wb") as out_file:
-#             shutil.copyfileobj(rz, out_file)
-#
-#     def download(self, out_dir: Path):
-#         out_dir: Path = out_dir / f"{self.type}_schemes" / self.name
-#         # metadata = {"last_updated": self.fetch_timestamp(), "genes": []}
-#         self.download_alleles(str(out_dir))
-#         if self.type != "cgmlst":
-#             self.download_profiles(out_dir)
 
 
 @dataclasses.dataclass
@@ -241,9 +239,17 @@ class EnterobaseFtpDownloader:
         for locus in loci:
             url = f"{self.scheme_url}/{locus}.fasta.gz"
             r = download(url)
-            rz = gzip.GzipFile(fileobj=r)
-            with gzip.open(f"{out_dir}/{locus}.fa.gz", "wb") as out_f:
-                normalise_fasta(rz, out_f)
+
+            # Create a file-like object from the response content
+            gzip_file = io.BytesIO(r.read())
+
+            # Open the gzip file and read its content
+            with gzip.open(gzip_file, "rt") as gz_content, gzip.open(
+                f"{out_dir}/{locus}.fa.gz", "wt"
+            ) as out_f:
+                normalise_fasta(gz_content.read(), out_f)
+
+            logging.debug(f"Downloaded and normalized alleles for {locus}")
 
     def fetch_timestamp(self):
         r = download(self.scheme_url)
@@ -260,9 +266,7 @@ class EnterobaseFtpDownloader:
         scheme_subdir = Path(f"{self.type}_schemes") / self.name
         scheme_dir = out_dir / scheme_subdir
         scheme_dir.mkdir(parents=True, exist_ok=True)
-        print(
-            f"Downloading alleles for {self.scheme_id} to {scheme_dir}", file=sys.stderr
-        )
+        logging.info(f"Downloading alleles for {self.scheme_id} to {scheme_dir}")
         loci = self.download_loci_list()
         metadata = {"last_updated": self.fetch_timestamp(), "genes": loci}
         self.download_alleles(loci, scheme_dir)
@@ -270,7 +274,7 @@ class EnterobaseFtpDownloader:
             self.download_profiles(scheme_dir)
         with open(f"{scheme_dir}/metadata.json", "w") as out_f:
             json.dump(metadata, out_f, indent=4)
-        return scheme_subdir,  metadata["last_updated"]
+        return scheme_subdir, metadata["last_updated"]
 
 
 @dataclasses.dataclass
@@ -286,10 +290,7 @@ class RidomCgmlstDownloader:
         self.name = f"ridom_{self.short_name.split('_')[0]}_{self.scheme_id}"
 
     def fetch_timestamp(self):
-        print(
-            f"Warning: Unable to fetch timestamp for Ridom schemes: {self.short_name}",
-            file=sys.stderr,
-        )
+        logging.warning(f"Unable to fetch timestamp for Ridom schemes: {self.short_name}")
         return datetime.now().strftime("%Y-%m-%d")
 
     def download(self, out_dir: Path):
@@ -309,9 +310,9 @@ class RidomCgmlstDownloader:
         # Normalise the files into the correct directory.
         for fasta_file in temp_dir.glob("*.fasta"):
             metadata["genes"].append(fasta_file.stem)
-            with gzip.open(f"{scheme_dir}/{fasta_file.stem}.fa.gz", "wb") as out_file:
-                with open(fasta_file, "rb") as in_file:
-                    normalise_fasta(in_file, out_file)
+            with gzip.open(f"{scheme_dir}/{fasta_file.stem}.fa.gz", "wt") as out_file:
+                with open(fasta_file, "rt") as in_file:
+                    normalise_fasta(in_file.read(), out_file)
 
         # Clean up
         os.unlink(alleles_zip_file)
@@ -321,17 +322,14 @@ class RidomCgmlstDownloader:
         return scheme_subdir, metadata["last_updated"]
 
 
-def initialise(metadata: dict[str, Any]) -> Any:
-    if "host" in metadata.keys() and metadata["host"] == "pubmlst":
+def initialise(metadata: dict[str, Any], keycache: KeyCache = None) -> Any:
+    if "host" in metadata.keys() and metadata["host"] in ["pubmlst", "pasteur"]:
         return PubmlstDownloader(
-            metadata["host_path"], metadata["scheme_id"], metadata["type"]
-        )
-    elif "host" in metadata.keys() and metadata["host"] == "pasteur":
-        return PubmlstDownloader(
+            metadata["host"],
             metadata["host_path"],
             metadata["scheme_id"],
             metadata["type"],
-            api_url="https://bigsdb.pasteur.fr/api/db",
+            keycache=keycache,
         )
     elif "host" in metadata.keys() and metadata["host"] == "enterobase":
         return EnterobaseFtpDownloader(
@@ -344,4 +342,4 @@ def initialise(metadata: dict[str, Any]) -> Any:
             metadata["shortname"],
         )
     else:
-        print(f"Skipping {metadata['short_name']}", file=sys.stderr)
+        logging.info(f"Skipping {metadata['short_name']}")

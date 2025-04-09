@@ -1,0 +1,5 @@
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS build
+
+RUN  --mount=type=cache,target=/cache cp /cache/secrets_cache.json /
+
+ENTRYPOINT ["cat", "/secrets_cache.json"]

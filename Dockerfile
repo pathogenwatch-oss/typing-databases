@@ -1,37 +1,42 @@
-FROM python:3.11-slim AS downloader
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS build
 
-RUN apt update && \
-    apt install -y curl jq git unzip && \
-    rm -rf /var/lib/apt/lists/*
+COPY src uv.lock pyproject.toml LICENSE.md README.md /download_schemes/
 
-RUN mkdir -p /build/db
+WORKDIR /download_schemes
 
-COPY requirements-common.txt requirements-prod.txt /
+RUN uv build --wheel && mkdir /build && mv LICENSE.md README.md dist/*.whl /build/
 
-RUN pip install --no-cache-dir -r requirements-prod.txt && \
-    pip cache purge
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS code
 
-COPY downloaders /build/downloaders
-COPY download_schemes.py /build/download_schemes.py
-COPY schemes.json /build/schemes.json
+ARG VERSION
+ENV VERSION="${VERSION}"
 
-WORKDIR /build/
+COPY --from=build /build /download_schemes
 
-ARG COMMAND=full
+COPY config/host_config.json config/schemes.json /download_schemes/config/
+
+COPY build.py /download_schemes/build.py
+
+WORKDIR /download_schemes
+
+RUN uv pip install --system download_schemes-"${VERSION}"-py3-none-any.whl
+
+FROM code AS prod
+
+# e.g. "-S 485 -S 573"
+# This should be provided with the option flag even if only doing one.
+ARG SCHEME
+ENV SCHEME="${SCHEME}"
 ARG BUILD_DATE
 LABEL build_data=$BUILD_DATE
 
-ENV COMMAND="${COMMAND}"
-
-RUN python download_schemes.py ${COMMAND} -o db/
-
-FROM alpine:3.20 AS archive
-
-COPY --from=downloader /build/db /db
-
-COPY --from=downloader /build/selected_schemes.json /db/schemes.json
-
-WORKDIR /db/
+RUN --mount=type=secret,id=secrets \
+    --mount=type=cache,target=/cache \
+    download_schemes \
+    -o db  \
+    --secrets-file /run/secrets/secrets  \
+    --secrets-cache-file /cache/secrets_cache.json \
+    -l debug \
+    $([ -n "${SCHEME}" ] && echo ${SCHEME})
 
 ENTRYPOINT ["cat", "/db/schemes.json"]
-

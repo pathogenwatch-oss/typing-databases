@@ -1,0 +1,18 @@
+{
+  "pasteur": {
+    "REST_URL": "https://bigsdb.pasteur.fr/api/db",
+    "WEB_URL": "https://bigsdb.pasteur.fr/cgi-bin/bigsdb/bigsdb.pl",
+    "AUTH_BASE": "https://bigsdb.pasteur.fr",
+    "LOGIN_DB": {
+      "bigsdb_users": "PasteurMLST"
+    }
+  },
+  "pubmlst": {
+    "REST_URL": "https://rest.pubmlst.org/db",
+    "WEB_URL": "https://pubmlst.org/bigsdb",
+    "AUTH_BASE": "https://pubmlst.org/bigsdb",
+    "LOGIN_DB": {
+      "db": "pubmlst_bigsdb_users"
+    }
+  }
+}

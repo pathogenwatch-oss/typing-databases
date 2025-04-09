@@ -1,18 +1,38 @@
-FROM python:3.11-slim
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS build
 
-RUN mkdir -p /builder
+COPY src uv.lock pyproject.toml LICENSE.md README.md /download_schemes/
 
-WORKDIR /builder
+WORKDIR /download_schemes
 
-COPY requirements-common.txt requirements-build.txt requirements-prod.txt /builder/
+RUN uv build --wheel && mkdir /build && mv LICENSE.md README.md dist/*.whl /build/
 
-RUN pip install --no-cache-dir -r requirements-build.txt && \
-    pip cache purge
+FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS code
 
-COPY build.py download_schemes.py Dockerfile /builder/
+ARG VERSION
+ENV VERSION="${VERSION}"
 
-COPY schemes.json /builder/schemes.json
+# Install Docker CLI
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg \
+    && echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y docker-ce-cli \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY downloaders /builder/downloaders
+COPY --from=build /build /download_schemes
 
-ENTRYPOINT ["python", "build.py"]
+COPY build.py /build.py
+
+RUN uv pip install --system download_schemes/download_schemes-"${VERSION}"-py3-none-any.whl
+
+WORKDIR /data
+
+ENTRYPOINT ["uv", "run", "/build.py"]

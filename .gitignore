@@ -6,3 +6,5 @@ __pycache__
 backup.*
 scratch*
 .idea/**
+/cache_dir/
+**secrets.json
