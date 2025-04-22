@@ -18,7 +18,7 @@ class KeyCache:
     host_config_file: Path
     cache_file: Path
 
-    __logged_in_session: dict[str, requests.session] = dataclasses.field(
+    __logged_in_session: dict[str, requests.Session] = dataclasses.field(
         default_factory=dict
     )
 
