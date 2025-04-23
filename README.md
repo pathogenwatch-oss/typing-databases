@@ -69,7 +69,7 @@ This improves efficiency and reduces the need for repeated authentication, espec
 - As new keys are generated during the build process, they are stored in the cache.
 - Subsequent builds can reuse these cached keys, speeding up the process.
 
-For details on how to easily cache the keys between Docker builds see
+For details on how to easily cache the keys between Docker builds see [Running with Docker](#running-with-docker).
 
 ## Easy builds with `build.py`
 
