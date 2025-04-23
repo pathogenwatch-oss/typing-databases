@@ -45,11 +45,7 @@ def retry_oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) ->
     if response.status_code == 301 or response.status_code == 401:
         logging.error(f"Session access denied. Attempting to regenerate keys as needed for {host}")
         keycache.delete_key("session", host)
-        retry_oauth_fetch(host, keycache, database, url)
-    # elif response.status_code == 401:
-    #     keycache.delete_key("session", host)
-    #     keycache.delete_key("access", host)
-    #     retry_oauth_fetch(host, keycache, database, url)
+        response = retry_oauth_fetch(host, keycache, database, url)
     else:
         response.raise_for_status()
     return response
