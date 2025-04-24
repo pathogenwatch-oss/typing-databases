@@ -31,7 +31,7 @@ from download_schemes.normalise_alleles import normalise_fasta
 #     stop=stop_after_attempt(10),
 #     wait=wait_exponential(multiplier=1, min=1, max=1200),
 # )
-def retry_oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) -> requests.Response:
+def oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) -> requests.Response:
     logging.debug(f"Fetching data from authenticated {host} - {database}...")
     consumer_key = keycache.get_consumer_key(host)
     session_key = keycache.get_session_key(host, database)
@@ -45,7 +45,7 @@ def retry_oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) ->
     if response.status_code == 301 or response.status_code == 401:
         logging.error(f"Session access denied. Attempting to regenerate keys as needed for {host}")
         keycache.delete_key("session", host)
-        response = retry_oauth_fetch(host, keycache, database, url)
+        response = oauth_fetch(host, keycache, database, url)
     else:
         response.raise_for_status()
     return response
@@ -139,7 +139,7 @@ class PubmlstDownloader:
         self.scheme_url = f"{self.base_url}/schemes/{self.scheme_id}"
         self.loci_url = f"{self.scheme_url}/loci"
         self.alleles_url = f"{self.base_url}/loci"
-        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(retry_oauth_fetch, self.host, self.keycache, self.database)
+        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(oauth_fetch, self.host, self.keycache, self.database)
 
 
     def download_loci(self) -> list[str]:

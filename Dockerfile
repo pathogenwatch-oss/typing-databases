@@ -11,13 +11,9 @@ FROM ghcr.io/astral-sh/uv:python3.10-bookworm-slim AS code
 ARG VERSION
 ENV VERSION="${VERSION}"
 
-COPY --from=build /build /download_schemes
+WORKDIR /
 
-COPY config/host_config.json config/schemes.json /download_schemes/config/
-
-COPY build.py /download_schemes/build.py
-
-WORKDIR /download_schemes
+COPY --from=build /build /
 
 RUN uv pip install --system download_schemes-"${VERSION}"-py3-none-any.whl
 
@@ -30,6 +26,8 @@ ENV SCHEME="${SCHEME}"
 ARG BUILD_DATE
 LABEL build_data=$BUILD_DATE
 
+COPY config/host_config.json config/schemes.json /config/
+
 RUN --mount=type=secret,id=secrets \
     --mount=type=cache,target=/cache \
     download_schemes \
@@ -39,4 +37,4 @@ RUN --mount=type=secret,id=secrets \
     -l debug \
     $([ -n "${SCHEME}" ] && echo ${SCHEME})
 
-ENTRYPOINT ["cat", "/db/schemes.json"]
+ENTRYPOINT ["cat", "/selected_schemes.json"]
