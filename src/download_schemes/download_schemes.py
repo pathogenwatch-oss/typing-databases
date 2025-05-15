@@ -93,7 +93,6 @@ def main(
         ),
     ] = "INFO",
 ) -> None:
-    print(f"{config_dir}, {secrets_file}, {log_level}")
     setup_logging(log_level)
 
     schemes_file = config_dir / "schemes.json"
@@ -103,7 +102,7 @@ def main(
         schemes: list[dict[str, Any]] = json.load(f)["schemes"]
 
     if only:
-        print(f"Only downloading schemes with shortnames: {', '.join(only)}")
+        logging.info(f"Only downloading schemes with shortnames: {', '.join(only)}")
         schemes = [
             scheme
             for scheme in schemes

@@ -1,5 +1,6 @@
 import io
 import re
+from typing import IO
 
 from Bio import SeqIO
 from Bio.Seq import Seq
@@ -7,14 +8,14 @@ from Bio.SeqRecord import SeqRecord
 
 bad_char = re.compile(r'[^ACGT]')
 
-def normalise_fasta(input_text: str, output_stream):
+def normalise_fasta(input_text: str, output_stream: IO[str]):
     contig_names = []
 
     for record in SeqIO.parse(io.StringIO(input_text), "fasta"):
         name = record.id
         sequence = str(record.seq).upper()
 
-        m = re.match(r'^(.+[_-])?([0-9]+(\\.[0-9]+)?)$', name)
+        m = re.match(r'^(.+[_-])?([0-9]+(\.[0-9]+)?)$', name)
         if m is None:
             print(f"Skipping badly formatted allele '{name}'")
             continue

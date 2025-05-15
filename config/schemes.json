@@ -2840,8 +2840,8 @@
     },
     {
       "shortname": "ngstar",
-      "host": "pubmlst",
-      "scheme_id": "67",
+      "host": "ngstar",
+      "scheme_id": "ngstar",
       "type": "other",
       "cite": "Neisseria gonorrhoeae Sequence Typing for Antimicrobial Resistance, a Novel Antimicrobial Resistance Multilocus Typing Scheme for Tracking Global Dissemination of N. gonorrhoeae Strains. W. Demczuk et al. Journal of Clinical Microbiology Apr 2017, 55 (5) 1454-1468; DOI: 10.1128/JCM.00100-17",
       "name": "NG-STAR 2.0",
@@ -2850,8 +2850,7 @@
           "name": "Neisseria gonorrhoeae",
           "taxid": 485
         }
-      ],
-      "host_path": "pubmlst_neisseria_seqdef"
+      ]
     },
     {
       "shortname": "lmonocytogenes_vir",

@@ -13,9 +13,10 @@ import zipfile
 from datetime import datetime
 from functools import partial
 from pathlib import Path
-from typing import Any, Callable, Iterable
+from typing import Any, Callable, IO, Iterable
 
 import requests
+from openpyxl import load_workbook
 from rauth import OAuth1Session
 from tenacity import (
     retry,
@@ -27,11 +28,9 @@ from download_schemes.keycache import KeyCache
 from download_schemes.normalise_alleles import normalise_fasta
 
 
-# @retry(
-#     stop=stop_after_attempt(10),
-#     wait=wait_exponential(multiplier=1, min=1, max=1200),
-# )
-def oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) -> requests.Response:
+def oauth_fetch(
+    host: str, keycache: KeyCache, database: str, url: str
+) -> requests.Response:
     logging.debug(f"Fetching data from authenticated {host} - {database}...")
     consumer_key = keycache.get_consumer_key(host)
     session_key = keycache.get_session_key(host, database)
@@ -43,7 +42,9 @@ def oauth_fetch(host: str, keycache: KeyCache, database: str, url: str) -> reque
     )
     response = session.get(url)
     if response.status_code == 301 or response.status_code == 401:
-        logging.error(f"Session access denied. Attempting to regenerate keys as needed for {host}")
+        logging.error(
+            f"Session access denied. Attempting to regenerate keys as needed for {host}"
+        )
         keycache.delete_key("session", host)
         response = oauth_fetch(host, keycache, database, url)
     else:
@@ -62,7 +63,6 @@ def retry_fetch(url: str, headers: dict[str, str] = None) -> requests.Response:
         logging.error(f"Failed to fetch {url}: {r.status_code}")
         r.raise_for_status()
     return r
-
 
 
 @retry(
@@ -118,7 +118,9 @@ def enterobase_api_download(
         if r.json() is None:
             break
         offset += limit
-        logging.debug(f"{datetime.now()},{offset},{json_r['links']['total____records']}")
+        logging.debug(
+            f"{datetime.now()},{offset},{json_r['links']['total____records']}"
+        )
         yield json_r
         if json_r["links"]["total____records"] < offset:
             break
@@ -133,14 +135,17 @@ class PubmlstDownloader:
     keycache: KeyCache
 
     def __post_init__(self):
-        self.database = f"{self.host_path.replace('pubmlst_', '').replace('_seqdef','')}"
+        self.database = (
+            f"{self.host_path.replace('pubmlst_', '').replace('_seqdef','')}"
+        )
         self.name = f"{self.host_path.replace('_seqdef','')}_{self.scheme_id}"
         self.base_url = f"{self.keycache.get_rest_url(self.host)}/{self.host_path}"
         self.scheme_url = f"{self.base_url}/schemes/{self.scheme_id}"
         self.loci_url = f"{self.scheme_url}/loci"
         self.alleles_url = f"{self.base_url}/loci"
-        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(oauth_fetch, self.host, self.keycache, self.database)
-
+        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(
+            oauth_fetch, self.host, self.keycache, self.database
+        )
 
     def download_loci(self) -> list[str]:
         logging.debug(f"Downloading loci for {self.name}...")
@@ -184,7 +189,7 @@ class PubmlstDownloader:
             alleles_url = f"{self.alleles_url}/{locus}/alleles_fasta"
             logging.debug(f"Downloading alleles for {locus} from {alleles_url}")
 
-            # PubMLST puts an apostrophe in front of RNA genes it seems
+            # PubMLST puts an apostrophe in front of RNA genes.
             clean_locus = locus.replace("'", "")
             scheme_metadata["genes"].append(clean_locus)
             allele_file = Path(f"{scheme_dir}/{clean_locus}.fa.gz")
@@ -286,7 +291,9 @@ class RidomCgmlstDownloader:
         self.name = f"ridom_{self.short_name.split('_')[0]}_{self.scheme_id}"
 
     def fetch_timestamp(self):
-        logging.warning(f"Unable to fetch timestamp for Ridom schemes: {self.short_name}")
+        logging.warning(
+            f"Unable to fetch timestamp for Ridom schemes: {self.short_name}"
+        )
         return datetime.now().strftime("%Y-%m-%d")
 
     def download(self, out_dir: Path):
@@ -337,5 +344,102 @@ def initialise(metadata: dict[str, Any], keycache: KeyCache = None) -> Any:
             metadata["scheme_id"],
             metadata["shortname"],
         )
+    elif "host" in metadata.keys() and metadata["host"] == "ngstar":
+        return NgstarDownloader(
+            metadata["shortname"],
+            metadata["type"],
+        )
     else:
-        logging.info(f"Skipping {metadata['short_name']}")
+        logging.info(f"Skipping {metadata['shortname']}")
+        raise ValueError(f"Unsupported host: {metadata['host']}")
+
+
+@dataclasses.dataclass
+class NgstarDownloader:
+    short_name: str
+    type: str
+    genes = ["penA", "mtrR", "porB", "ponA", "gyrA", "parC", "23S"]
+
+    @staticmethod
+    def fetch_timestamp():
+        # NGStar does not provide a method to get the last updated date.
+        return datetime.now().strftime("%Y-%m-%d")
+
+    def download(self, out_dir: Path):
+        scheme_subdir = Path(f"{self.type}_schemes") / self.short_name
+        scheme_dir: Path = out_dir / scheme_subdir
+        scheme_dir.mkdir(parents=True, exist_ok=True)
+
+        for gene in self.genes:
+            out_file_name = scheme_dir / f"{gene}.fa.gz"
+            with gzip.open(out_file_name, "wt") as out_file:
+                alleles_ids = NgstarDownloader.download_alleles(gene, out_file)
+            logging.debug(f"Downloaded {len(alleles_ids)} alleles for {gene}")
+        with open(scheme_dir / "profiles.tsv", "w") as out_file:
+            NgstarDownloader.download_profiles(alleles_ids, out_file)
+        logging.info(f"Downloaded profiles for {self.short_name}")
+
+        # Need to write the metadata and return the scheme directory + last updated date
+        metadata = {"last_updated": NgstarDownloader.fetch_timestamp(), "genes": self.genes}
+        with open(f"{scheme_dir}/metadata.json", "w") as out_f:
+            json.dump(metadata, out_f, indent=4)
+
+        return scheme_subdir, metadata["last_updated"]
+
+    @staticmethod
+    def download_alleles(gene, out_file: IO[str]):
+        url = f"https://ngstar.canada.ca/alleles/download?lang=en&loci_name={gene}"
+        logging.debug(f"Downloading {gene} from {url}.")
+        r = download(url)
+        fasta = r.read().decode('utf-8')
+        fasta = fasta.replace(f"{gene}_", "")
+        alleles_ids = normalise_fasta(fasta, out_file)
+        logging.debug(f"Downloaded alleles for {gene}")
+        return alleles_ids
+
+    @staticmethod
+    def download_profiles(allele_names, out_file):
+        input_profiles = download(
+            "https://ngstar.canada.ca/sequence_types/download?lang=en", timeout=180
+        )
+
+        rows = NgstarDownloader.parse_profiles(input_profiles)
+        header_row = next(rows)
+        print("\t".join(header_row), file=out_file)
+        for row in rows:
+            out_row = [""]*(len(header_row))
+            for i, (column, value) in enumerate(zip(header_row, row)):
+                if column == "ST":
+                    out_row[i] = str(int(value))
+                elif column not in allele_names:
+                    out_row[i] = str(value)
+                elif str(value).encode("utf8") in allele_names[column]:
+                    out_row[i] = str(value)
+                elif str(int(value)).encode("utf8") in allele_names[column]:
+                    out_row[i] = str(int(value))
+                else:
+                    raise ValueError(f"{value} is not recognised for {column}")
+            print("\t".join(out_row), file=out_file)
+        logging.debug(f"Written profiles for ng_star to {out_file}")
+
+    @staticmethod
+    def parse_profiles(profile_file):
+        # with tempfile.NamedTemporaryFile("wb", delete=False) as _tmp:
+        with open("tempfile.xlsx", "wb") as fh:
+            shutil.copyfileobj(profile_file, fh)
+            profile_path = fh.name
+
+        try:
+            workbook = load_workbook(filename=profile_path, read_only=True)
+            sheet = workbook.active
+            rows = sheet.iter_rows(values_only=True)
+            
+            header = next(rows)
+            header = list(header)
+            header[0] = "ST"
+            yield header
+            
+            for row in rows:
+                yield row
+        finally:
+            os.remove(profile_path)
