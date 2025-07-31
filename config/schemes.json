@@ -569,6 +569,26 @@
       ]
     },
     {
+      "shortname": "lpneumophila_1",
+      "host": "ridom",
+      "scheme_id": "Lpneumophila4833",
+      "type": "cgmlst",
+      "cite": [
+        {
+          "text": "Moran-Gilad J et al. (2015) Euro Surveill. 20",
+          "url": "https://www.ncbi.nlm.nih.gov/pubmed/26212142",
+          "long": "Moran-Gilad J, Prior K, Yakunin E, Harrison TG, Underwood A, Lazarovitch T, Valinsky L, Luck C, Krux F, Agmon V, Grotto I, and Harmsen D. Design and application of a core genome multilocus sequence typing scheme for investigation of Legionnaires' disease incidents. Euro Surveill. 2015, 20"
+        }
+      ],
+      "name": "Legionella pneumophila cgMLST",
+      "targets": [
+        {
+          "name": "Legionella pneumophila",
+          "taxid": 446
+        }
+      ]
+    },
+    {
       "shortname": "mycobacterium_1",
       "host": "ridom",
       "scheme_id": "741110",
