@@ -58,6 +58,7 @@ def build_image(
         cache_to=f"type=local,dest={cache_dir}",
         secrets=[f'id=secrets,src={secrets_file.absolute()}'],
         progress="plain",
+        load=True
     )
 
     print(result, file=sys.stderr)

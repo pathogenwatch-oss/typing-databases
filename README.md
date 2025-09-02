@@ -88,7 +88,7 @@ the image tag(s) and the full image name(s).
 #### Build all images
 
 ```
-%> uv run --script build.py
+%> uv run --script build.py > all_images.csv
 ```
 
 #### Build a scheme image
@@ -96,13 +96,13 @@ the image tag(s) and the full image name(s).
 `${short_name}` - the short name of the scheme as in the schemes.json file
 
 ```
-%> uv run --script build.py -n ${short_name}
+%> uv run --script build.py -n ${short_name} > image.csv
 ```
 
 #### Build all MLST schemes
 
 ```
-%> uv run --script build.py -t mlst
+%> uv run --script build.py -t mlst > mlst_images.csv
 ```
 
 ### Running `build.py` via Docker
