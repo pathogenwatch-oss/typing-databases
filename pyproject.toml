@@ -1,6 +1,6 @@
 [project]
 name = "download_schemes"
-version = "3.0.0"
+version = "3.1.0"
 description = "Add your description here"
 requires-python = ">=3.10,<=3.12"
 dependencies = [
