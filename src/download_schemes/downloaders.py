@@ -133,6 +133,7 @@ class PubmlstDownloader:
     scheme_id: int
     type: str
     keycache: KeyCache
+    authenticate: bool = True
 
     def __post_init__(self):
         self.database = (
@@ -143,13 +144,16 @@ class PubmlstDownloader:
         self.scheme_url = f"{self.base_url}/schemes/{self.scheme_id}"
         self.loci_url = f"{self.scheme_url}/loci"
         self.alleles_url = f"{self.base_url}/loci"
-        self.__retry_oauth_fetch: Callable[[str], requests.Response] = partial(
-            oauth_fetch, self.host, self.keycache, self.database
-        )
+        if self.authenticate:
+            self.__fetch: Callable[[str], requests.Response] = partial(
+                oauth_fetch, self.host, self.keycache, self.database
+            )
+        else:
+            self.__fetch = retry_fetch
 
     def download_loci(self) -> list[str]:
         logging.debug(f"Downloading loci for {self.name}...")
-        r = self.__retry_oauth_fetch(self.loci_url)
+        r = self.__fetch(self.loci_url)
         loci: list[str] = []
         stem = f"{self.alleles_url}/"
         for locus in json.loads(r.text)["loci"]:
@@ -157,7 +161,7 @@ class PubmlstDownloader:
         return loci
 
     def download_profiles(self, out_dir: Path):
-        response = self.__retry_oauth_fetch(f"{self.scheme_url}/profiles_csv")
+        response = self.__fetch(f"{self.scheme_url}/profiles_csv")
 
         if response.status_code == 200:
             with open(out_dir / "profiles.tsv", "wb") as out_file:
@@ -170,7 +174,7 @@ class PubmlstDownloader:
     def fetch_timestamp(self):
         logging.debug(f"Fetching timestamp for {self.name}...")
         url = self.scheme_url
-        r = self.__retry_oauth_fetch(url)
+        r = self.__fetch(url)
         scheme_metadata = json.loads(r.text)
         return (
             scheme_metadata["last_updated"]
@@ -196,7 +200,7 @@ class PubmlstDownloader:
             # Remove any existing file to deal with failed downloads.
             allele_file.unlink(missing_ok=True)
             with gzip.open(allele_file, "wt") as out_f:
-                response = self.__retry_oauth_fetch(alleles_url)
+                response = self.__fetch(alleles_url)
                 normalise_fasta(response.text, out_f)
 
         if self.type != "cgmlst":
@@ -325,7 +329,10 @@ class RidomCgmlstDownloader:
         return scheme_subdir, metadata["last_updated"]
 
 
-def initialise(metadata: dict[str, Any], keycache: KeyCache = None) -> Any:
+def initialise(
+    metadata: dict[str, Any],
+    keycache: KeyCache = None,
+) -> Any:
     if "host" in metadata.keys() and metadata["host"] in ["pubmlst", "pasteur"]:
         return PubmlstDownloader(
             metadata["host"],
@@ -333,6 +340,7 @@ def initialise(metadata: dict[str, Any], keycache: KeyCache = None) -> Any:
             metadata["scheme_id"],
             metadata["type"],
             keycache=keycache,
+            authenticate=keycache.can_authenticate(metadata["host"]),
         )
     elif "host" in metadata.keys() and metadata["host"] == "enterobase":
         return EnterobaseFtpDownloader(

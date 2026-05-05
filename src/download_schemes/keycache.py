@@ -33,17 +33,27 @@ class KeyCache:
         return host in ["pubmlst", "pasteur"]
 
     def __initialize_cache_from_secrets(self):
+        cache_updated = False
         for host, host_data in self.__secrets.items():
             if host not in self.__cache:
                 self.__cache[host] = {}
+                cache_updated = True
             for key_type, key_data in host_data.items():
                 if key_type not in ["user", "consumer"]:
+                    if self.__cache[host].get(key_type) == key_data:
+                        continue
                     self.__cache[host][key_type] = key_data
-        self.save_cache()
+                    cache_updated = True
+        if cache_updated:
+            self.save_cache()
 
     def load_secrets(self) -> dict[str, dict[str, dict[str, str]]]:
         if not self.secrets_file.exists():
-            raise FileNotFoundError(f"Secrets file not found: {self.secrets_file}")
+            logger.info(
+                f"Secrets file not found: {self.secrets_file}. "
+                "BIGSdb schemes without credentials will be downloaded without authentication."
+            )
+            return {}
         with open(self.secrets_file, "r") as f:
             return json.load(f)
 
@@ -62,12 +72,31 @@ class KeyCache:
             return None
         if key_type in ["user", "consumer"]:
             if host not in self.__secrets or key_type not in self.__secrets[host]:
-                raise KeyError(f"{key_type.capitalize()} for {host} not found in secrets file")
-            return self.__secrets[host][key_type]["TOKEN"], self.__secrets[host][key_type]["TOKEN SECRET"]
+                raise KeyError(
+                    f"{key_type.capitalize()} for {host} not found in secrets file"
+                )
+            return (
+                self.__secrets[host][key_type]["TOKEN"],
+                self.__secrets[host][key_type]["TOKEN SECRET"],
+            )
         else:
             if host in self.__cache and key_type in self.__cache[host]:
-                return self.__cache[host][key_type]["TOKEN"], self.__cache[host][key_type]["TOKEN SECRET"]
+                return (
+                    self.__cache[host][key_type]["TOKEN"],
+                    self.__cache[host][key_type]["TOKEN SECRET"],
+                )
             return None
+
+    def has_key(self, key_type: str, host: str) -> bool:
+        try:
+            return self.get_key(key_type, host) is not None
+        except KeyError:
+            return False
+
+    def can_authenticate(self, host: str) -> bool:
+        if not self.__is_bigsdb(host):
+            return False
+        return self.has_key("consumer", host) and self.has_key("user", host)
 
     def set_key(self, key_type: str, host: str, token: str, token_secret: str) -> None:
         if key_type in ["user", "consumer"]:
@@ -255,7 +284,7 @@ class KeyCache:
             return json.load(f)
 
     @staticmethod
-    def __logged_in(session: requests.session, url: str) -> bool:
+    def __logged_in(session: requests.Session, url: str) -> bool:
         """Check if the current session is logged in."""
         response = session.get(url)
         return "Log out" in response.text

@@ -3,8 +3,9 @@
 This repository holds the build scripts and Dockerfile for building the typing database schemes for the MLST/cgMLST tool
 as an image.
 
-Note that in order to build PubMLST or Pasteur-based schemes it is now required to have a user account and a "consumer
-key and secret" for each host.
+Note that to build the latest PubMLST or Pasteur-based schemes, it is now required to have a user account and a
+"consumer key and secret" for each host. PubMLST and Pasteur schemes can also be downloaded without authentication if
+no credentials are configured for that host; these downloads return only public pre-2025 data.
 
 The core tool is designed to download one or more schemes into a single folder and can be run within Docker to create an
 image containing the data. A second script called [build.py](build.py) is provided that can generate individual images
@@ -26,10 +27,15 @@ for a release.
 
 ## Authentication
 
-PubMLST and the Pasteur Institute require users to be logged in order to access the latest scheme data. Before running
-the downloader you will need to obtain a user account and consumer token+secret for both. The downloader can then do the
-required authentication steps. The generated keys can also be kept and re-used. For more details
-see [Key Management](#key-management) below.
+PubMLST and the Pasteur Institute require users to be logged in to access the latest scheme data. Before running
+the downloader for the latest data, you will need a user account and consumer token & secret for both. The downloader
+can then do the required authentication steps. The generated keys can also be kept and re-used. For more details see
+[Key Management](#key-management) below.
+
+PubMLST and Pasteur data submitted on or before 2024-12-31 remains publicly accessible and redistributable. The
+downloader automatically uses authentication for a host when `secrets.json`, plus any cached tokens, contains enough
+credentials for that host. If credentials are missing for PubMLST or Pasteur, requests to that host are made without
+OAuth and the downloader logs a warning that the output will only include public, redistributable records.
 
 ## Key Management
 
@@ -37,7 +43,7 @@ see [Key Management](#key-management) below.
 
 The `secrets.json` file contains initial credentials and keys for accessing various MLST databases. It should include:
 
-- User credentials for each host (e.g., PubMLST, Pasteur)
+- User credentials for each host (e.g. PubMLST, Pasteur)
 - Consumer keys for each host
 - Any initial access or session keys (optional)
 
@@ -65,11 +71,11 @@ This is a minimal example. It is possible to also store request, access, and ses
 The key cache mechanism allows for the reuse of generated keys (like access and session keys) between runs.
 This improves efficiency and reduces the need for repeated authentication, especially when using Docker.
 
-- The cache is initially populated with non-sensitive keys from secrets.json.
+- The cache is initially populated with the PubMLST user and consumer tokens from secrets.json.
 - As new keys are generated during the build process, they are stored in the cache.
 - Subsequent builds can reuse these cached keys, speeding up the process.
 
-For details on how to easily cache the keys between Docker builds see [Running with Docker](#running-with-docker).
+For details on how to easily cache the keys between Docker builds, see [Running with Docker](#running-with-docker).
 
 ## Easy builds with `build.py`
 
@@ -144,6 +150,13 @@ uv run download_schemes
 
 This command will download all the schemes into a local directory.
 
+To download public-only PubMLST or Pasteur schemes, omit credentials for that host:
+
+```
+uv run download_schemes -S efaecalis
+uv run download_schemes -S lmonocytogenes
+```
+
 The script is "polite" and will download the schemes slowly. It will take an hour or more, even on a good internet
 connection. The metadata for the downloaded schemes, including the update timestamp and location within the produced
 image, is printed to STDOUT along with being written to `selected_schemes.json`.
@@ -164,6 +177,16 @@ docker build --rm \
   --cache-from type=local,src=cache_dir \
   --cache-to type=local,dest=cache_dir \
   -t typing-databases:2024-12-25-all .
+```
+
+For public-only BIGSdb scheme builds, omit credentials for the selected host:
+
+```
+docker build --rm \
+  --build-arg SCHEME="-S efaecalis" \
+  --build-arg BUILD_DATE=$(date +%Y-%m-%d) \
+  --build-arg VERSION=3.0.0 \
+  -t typing-databases:2024-12-31-efaecalis-public .
 ```
 
 ### Running with Docker
@@ -235,7 +258,7 @@ Schemes are managed using the [`schemes.json`](config/schemes.json) file. To add
 
 ### Example PubMLST scheme record.
 
-_Note_: Pasteur records take the same format, just replace the host field with `"host": "pasteur"`
+_Note_: Pasteur records take the same format, but change the host fielf to "pasteur": e.g. `"host": "pasteur"`
 
 _Note2_: `taxid` must be a species or genus level NCBI taxonomy code if being used with Pathogenwatch.
 
@@ -336,7 +359,7 @@ Contigs are numbered. They each appear on one line and only include uppercase 'A
 | 3  | 1    | 1    | 1    | 9   | 1   | 1   | 12   | CC1            | 
 | 4  | 10   | 10   | 8    | 6   | 10  | 3   | 2    | CC45           |
 
-The profiles are output in tab-delimited CSV file called `profiles.tsv`. This file must include a column per gene and an
+The profiles are output in the tab-delimited CSV file called `profiles.tsv`. This file must include a column per gene and an
 ST column, but it can contain extra columns as well.
 
 ### Metadata file
@@ -358,4 +381,3 @@ schemes), along with the list of genes in the required order for the scheme.
     ]
 }
 ```
-

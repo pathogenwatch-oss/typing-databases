@@ -48,7 +48,6 @@ def main(
             "-s",
             "--secrets-file",
             help="Path to the secrets file containing (at least) the user credentials and consumer key+secret",
-            exists=True,
             file_okay=True,
             dir_okay=False,
         ),
@@ -109,14 +108,20 @@ def main(
             if any(wanted_scheme == scheme["shortname"] for wanted_scheme in only)
         ]
 
-    keycache = KeyCache(secrets_file=secrets_file, host_config_file=config_dir / "host_config.json", cache_file=secrets_cache_file)
+    keycache = KeyCache(
+        secrets_file=secrets_file,
+        host_config_file=config_dir / "host_config.json",
+        cache_file=secrets_cache_file,
+    )
     logging.debug(f"Keycache: {keycache}")
     logging.info(f"Downloading {len(schemes)} schemes")
     download_schemes(output_dir, schemes, keycache, output_schemes_file)
 
 
 def download_scheme(
-    metadata: dict[str, Any], output_dir: Path, keycache: KeyCache
+    metadata: dict[str, Any],
+    output_dir: Path,
+    keycache: KeyCache,
 ) -> tuple[str, str]:
     downloader = downloaders.initialise(metadata, keycache)
     logging.debug("Downloader initialised.")
@@ -131,9 +136,17 @@ def download_schemes(
     keycache: KeyCache,
     output_schemes_file: Path = None,
 ):
+    host_names = {"pubmlst": "PubMLST", "pasteur": "Pasteur"}
     output_dir.mkdir(parents=True, exist_ok=True)
     for scheme in schemes:
         logging.info(f"Downloading {scheme['shortname']}")
+        host = scheme.get("host")
+        if host in host_names and not keycache.can_authenticate(host):
+            logging.warning(
+                f"Downloading {scheme['shortname']} from {host_names[host]} without "
+                "authentication. This scheme will only include public, "
+                "redistributable records."
+            )
         try:
             download_path, timestamp = download_scheme(scheme, output_dir, keycache)
             scheme["db_path"] = download_path
